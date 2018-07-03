@@ -1,0 +1,10 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    raw_user.security.voter.entity_owner:
+        class: Raw\Bundle\UserBundle\Security\Voter\EntityOwnerVoter
+
+    raw_user.security.voter.super_admin:
+        class: Raw\Bundle\UserBundle\Security\Voter\SuperAdminVoter

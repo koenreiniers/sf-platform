@@ -1,0 +1,46 @@
+raw_vue:
+    apps:
+        raw_grid:
+            templates:
+                grid: '%kernel.project_dir%/frontend/raw-grid/templates/grid.html'
+                grid/pagination: '%kernel.project_dir%/frontend/raw-grid/templates/pagination.html'
+                grid/filter: '%kernel.project_dir%/frontend/raw-grid/templates/filter.html'
+                grid/filterer: '%kernel.project_dir%/frontend/raw-grid/templates/filterer.html'
+                grid/action: '%kernel.project_dir%/frontend/raw-grid/templates/action.html'
+        raw_platform:
+            templates:
+
+                dropdown: '%kernel.project_dir%/frontend/raw/templates/dropdown.html'
+                box: '%kernel.project_dir%/frontend/raw/templates/box.html'
+                modal: '%kernel.project_dir%/frontend/raw/templates/modal.html'
+                chart: '%kernel.project_dir%/frontend/raw/templates/components/chart.html'
+                advanced_select: '%kernel.project_dir%/frontend/raw/templates/components/advanced-select.html'
+                vector_map: '%kernel.project_dir%/frontend/raw/templates/components/vector-map.html'
+                date_range_picker: '%kernel.project_dir%/frontend/raw/templates/components/date-range-picker.html'
+
+
+
+
+
+                form/form: '%kernel.project_dir%/frontend/raw-vue/templates/form/form.html'
+                form/simple: '%kernel.project_dir%/frontend/raw-vue/templates/form/simple.html'
+                form/button: '%kernel.project_dir%/frontend/raw-vue/templates/form/button.html'
+                form/select: '%kernel.project_dir%/frontend/raw-vue/templates/form/select.html'
+                form/label: '%kernel.project_dir%/frontend/raw-vue/templates/form/label.html'
+                form/checkbox: '%kernel.project_dir%/frontend/raw-vue/templates/form/checkbox.html'
+
+                # Dashboard
+                dashboard: '%kernel.project_dir%/frontend/raw-dashboard/templates/components/dashboard.html'
+                widget: '%kernel.project_dir%/frontend/raw-dashboard/templates/components/widget.html'
+                widget/edit: '%kernel.project_dir%/frontend/raw-dashboard/templates/components/widget-form.html'
+                widget/create: '%kernel.project_dir%/frontend/raw-dashboard/templates/components/create-widget.html'
+                widgets/grid: '%kernel.project_dir%/frontend/raw-dashboard/templates/widgets/grid-widget.html'
+                widgets/example: '%kernel.project_dir%/frontend/raw-dashboard/templates/widgets/example-widget.html'
+                widgets/welcome_message: '%kernel.project_dir%/frontend/raw-dashboard/templates/widgets/welcome-message-widget.html'
+                widgets/info_box: '%kernel.project_dir%/frontend/raw-dashboard/templates/widgets/info-box-widget.html'
+                widgets/chart: '%kernel.project_dir%/frontend/raw-dashboard/templates/widgets/chart-widget.html'
+
+
+                widgets/notifications: '%kernel.project_dir%/frontend/raw-user/templates/widgets/notifications-widget.html'
+                flash_messages: '%kernel.project_dir%/frontend/raw-user/templates/flash-messages.html'
+                notifications: '%kernel.project_dir%/frontend/raw-user/templates/notifications.html'

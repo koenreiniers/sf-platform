@@ -1,0 +1,15 @@
+services:
+
+
+
+    raw_api.repository.token:
+        class: Raw\Component\OAuth2\Repository\TokenRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - '%raw_api.token.class%'
+
+    raw_api.repository.client:
+        class: Raw\Component\OAuth2\Repository\ClientRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - '%raw_api.client.class%'

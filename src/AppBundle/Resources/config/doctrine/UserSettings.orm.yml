@@ -1,0 +1,11 @@
+AppBundle\Entity\UserSettings:
+    type: entity
+    table: app_user_settings
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        decimalSeparator:
+            type: string

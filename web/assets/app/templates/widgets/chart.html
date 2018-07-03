@@ -1,0 +1,9 @@
+<box :solid="true" :type="null">
+    <h3 slot="header" class="box-title">
+        {{ widget.title }}
+    </h3>
+
+    <chart @change="onChartChange" :type="widget.settings.type" :labels="labels" :datasets="datasets" :options="options"></chart>
+
+
+</box>.

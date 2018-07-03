@@ -1,0 +1,12 @@
+{
+  "browserify": {
+    "base_path": "./app/",
+    "alias": {
+      "app": "src/app.js"
+    },
+    "src": [
+      "autoload.js",
+      "src/app.js"
+    ]
+  }
+}

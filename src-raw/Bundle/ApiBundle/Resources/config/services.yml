@@ -1,0 +1,16 @@
+imports:
+    - { resource: services/* }
+
+parameters:
+    raw_api.token.class: Raw\Bundle\ApiBundle\Entity\Token
+    raw_api.client.class: Raw\Bundle\ApiBundle\Entity\Client
+
+services:
+
+
+    raw_api.token_factory:
+        class: Raw\Component\OAuth2\TokenFactory
+        arguments:
+            - '%raw_api.token.class%'
+
+

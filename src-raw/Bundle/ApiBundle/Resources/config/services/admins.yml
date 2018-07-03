@@ -1,0 +1,8 @@
+services:
+
+    raw_api.admin.client:
+        class: Raw\Bundle\ApiBundle\Admin\ClientAdmin
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: raw.admin, alias: api-clients }

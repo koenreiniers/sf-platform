@@ -1,0 +1,12 @@
+{
+  "browserify": {
+    "base_path": "./raw-api/",
+    "alias": {
+      "raw-api": "src/raw-api.js"
+    },
+    "src": [
+      "src/raw-api.js"
+    ]
+  }
+
+}

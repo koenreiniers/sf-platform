@@ -1,0 +1,19 @@
+<h2>Products ({{ channel.products|length }})</h2>
+
+{% set products = channel.products | slice(0, 10) %}
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>SKU</th>
+        <th>Name</th>
+    </tr>
+    {% for product in products %}
+        <tr>
+            <td>{{ product.id }}(ext:{{ product.externalId }})</td>
+            <td>{{ product.sku }}</td>
+            <td>{{ product.name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+

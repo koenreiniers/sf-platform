@@ -1,0 +1,22 @@
+@import 'variables';
+@import 'main-content';
+@import 'user-nav';
+@import 'sidebar';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bodyBackgroundColor;
+  margin-left: $sidebarWidth;
+}
+html {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+section.page {
+  width: 100%;
+  box-sizing: content-box;
+}

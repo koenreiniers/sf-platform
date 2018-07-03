@@ -1,0 +1,11 @@
+<div :class="['box', type ? 'box-'+type : '', solid ? 'box-solid' : '']">
+    <div class="box-header">
+        <slot name="header"></slot>
+    </div>
+    <div class="box-body">
+        <slot></slot>
+    </div>
+    <div class="box-footer">
+        <slot name="footer"></slot>
+    </div>
+</div>.

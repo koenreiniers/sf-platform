@@ -1,0 +1,6 @@
+services:
+
+    raw_lucene.registry:
+        class: Raw\Bundle\LuceneBundle\Lucene\LuceneRegistry
+        arguments:
+            - []

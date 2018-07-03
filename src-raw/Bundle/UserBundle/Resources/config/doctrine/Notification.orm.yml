@@ -1,0 +1,26 @@
+Raw\Bundle\UserBundle\Entity\Notification:
+    type: entity
+    table: raw_user_notification
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            column: "`type`"
+        message:
+            type: text
+        read:
+            type: boolean
+            column: "`read`"
+        url:
+            type: string
+            nullable: true
+        createdAt:
+            type: datetime
+    manyToOne:
+        owner:
+            targetEntity: Raw\Bundle\UserBundle\Entity\User
+            inversedBy: notifications

@@ -1,0 +1,52 @@
+section.sidebar {
+
+  z-index: 10000;
+
+  $defaultAnchorColor: #fff;
+
+  $popoutBackground: #444;
+  $popoutItemWidth: 200px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $sidebarWidth;
+  height: 100%;
+  background: $sidebarBackground;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    color: $defaultAnchorColor;
+    &:link {
+      text-decoration: none;
+      color: $defaultAnchorColor;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $defaultAnchorColor;
+    }
+    &:active {
+      text-decoration: none;
+      color: $defaultAnchorColor;
+    }
+    &:visited {
+      text-decoration: none;
+      color: $defaultAnchorColor;
+    }
+  }
+
+
+
+
+  @import 'sidebar/menu';
+  @import 'sidebar/popoutmenu';
+  @import 'sidebar/submenu';
+
+}

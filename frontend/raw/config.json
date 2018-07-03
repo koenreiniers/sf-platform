@@ -1,0 +1,25 @@
+{
+  "browserify": {
+    "base_path": "./raw/",
+    "alias": {
+      "raw": "src/raw.js",
+      "raw/misc": "src/misc.js",
+      "raw/std": "src/std.js",
+      "raw/templating": "src/templating.js",
+      "raw/components": "src/components.js"
+    },
+    "src": [
+      "autoload.js"
+    ]
+  },
+  "templates": {
+    "dropdown": "./raw/templates/dropdown.html",
+    "box": "./raw/templates/box.html",
+    "modal": "./raw/templates/modal.html",
+    "chart": "./raw/templates/components/chart.html",
+    "advanced_select": "./raw/templates/components/advanced-select.html",
+    "vector_map": "./raw/templates/components/vector-map.html",
+    "date_range_picker": "./raw/templates/components/date-range-picker.html"
+  }
+
+}

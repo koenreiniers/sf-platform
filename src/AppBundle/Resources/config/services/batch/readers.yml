@@ -1,0 +1,6 @@
+services:
+
+    app.batch.reader.channel:
+        class: AppBundle\Batch\Reader\ChannelReader
+        arguments:
+            - '@doctrine.orm.default_entity_manager'

@@ -1,0 +1,48 @@
+raw_user.api.user.index:
+    path: /users
+    methods: GET
+    defaults:
+        _controller: RawUserBundle:User:index
+
+raw_user.api.user.delete:
+    path: /users/{id}
+    methods: DELETE
+    defaults:
+        _controller: RawUserBundle:User:delete
+    options:
+        expose: true
+
+raw_user.api.notification.index:
+    path: /notifications
+    methods: GET
+    defaults:
+        _controller: RawUserBundle:Notification:index
+    options:
+        expose: true
+
+raw_user.api.notification.unread:
+    path: /notifications/unread
+    defaults:
+        _controller: RawUserBundle:Notification:unread
+    options:
+        expose: true
+
+raw_user.api.notification.create:
+    path: /notifications
+    methods: POST
+    defaults:
+        _controller: RawUserBundle:Notification:create
+
+raw_user.api.notification.view:
+    path: /notifications/{id}
+    methods: GET
+    defaults:
+        _controller: RawUserBundle:Notification:view
+    options:
+        expose: true
+
+raw_user.api.notification.delete:
+    path: /notifications/{id}
+    methods: DELETE
+    defaults:
+        _controller: RawUserBundle:Notification:delete

@@ -1,0 +1,11 @@
+{
+  "imports": [
+    "deps/config.json"
+  ],
+  "browserify": {
+    "dest": "../web/assets/deps.js",
+    "alias": {
+    }
+  }
+
+}

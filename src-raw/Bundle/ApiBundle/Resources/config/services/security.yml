@@ -1,0 +1,14 @@
+services:
+
+    raw_api.security.authentication.provider.oauth2:
+        class: Raw\Component\OAuth2\Security\Authentication\Provider\OAuth2Provider
+        arguments:
+            - '@raw_api.repository.token'
+        public: false
+
+    raw_api.security.authentication.listener.oauth2:
+        class: Raw\Component\OAuth2\Security\Firewall\OAuth2Listener
+        arguments:
+            - '@security.token_storage'
+            - '@security.authentication.manager'
+        public: false

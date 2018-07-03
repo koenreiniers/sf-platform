@@ -1,0 +1,8 @@
+<span>
+
+    <form-label :config="config"></form-label>
+    <div v-for="child, key in config.children">
+        <component @submit="onSubmit" :is="getComponentName(child)" :name="key" :config="child" v-model="newValue[key]"></component>
+    </div>
+
+</span>

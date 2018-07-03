@@ -1,0 +1,21 @@
+{
+  "browserify": {
+    "base_path": "./raw-vue/",
+    "alias": {
+      "raw-vue": "src/raw-vue.js",
+      "raw-vue/components": "src/components.js"
+    },
+    "src": [
+      "src/autoload.js"
+    ]
+  },
+  "templates": {
+    "form/form": "./raw-vue/templates/form/form.html",
+    "form/simple": "./raw-vue/templates/form/simple.html",
+    "form/button": "./raw-vue/templates/form/button.html",
+    "form/select": "./raw-vue/templates/form/select.html",
+    "form/label": "./raw-vue/templates/form/label.html",
+    "form/checkbox": "./raw-vue/templates/form/checkbox.html"
+  }
+
+}

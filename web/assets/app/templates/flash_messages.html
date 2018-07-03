@@ -1,0 +1,6 @@
+<div>
+    <div v-for="flash,i in flashes" class="alert" :class="['alert-'+flash.level]">
+        <a href="#" @click="dismiss(flash,i)" class="close">×</a>
+        {{ flash.message }}
+    </div>
+</div>.

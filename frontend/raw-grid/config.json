@@ -1,0 +1,20 @@
+{
+  "browserify": {
+    "base_path": "./raw-grid/",
+    "alias": {
+      "raw-grid": "src/raw-grid.js",
+      "raw-grid/extensions": "src/extensions.js"
+    },
+    "src": [
+      "src/autoload.js"
+    ]
+  },
+  "templates": {
+    "grid": "./raw-grid/templates/grid.html",
+    "grid/pagination": "./raw-grid/templates/pagination.html",
+    "grid/filter": "./raw-grid/templates/filter.html",
+    "grid/filterer": "./raw-grid/templates/filterer.html",
+    "grid/action": "./raw-grid/templates/action.html"
+  }
+
+}

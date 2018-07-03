@@ -1,0 +1,20 @@
+services:
+
+    _defaults:
+        autoconfigure:
+            true:
+
+    _instanceof:
+        Raw\Component\Statistics\StatisticLoaderInterface:
+            public: false
+            tags:
+                - { name: statistics.loader }
+
+    Raw\Bundle\UserBundle\Statistics\UserStatisticLoader:
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    Raw\Bundle\UserBundle\Statistics\NotificationStatisticLoader:
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@security.token_storage'

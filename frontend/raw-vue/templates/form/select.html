@@ -1,0 +1,12 @@
+<span>
+    <form-label :config="config"></form-label>
+
+    <span v-if="multiple">
+        <select v-model="newValue" class="form-control" multiple="multiple" @change="onInput">
+            <option v-for="v, label in choices" :value="v">{{ label }}</option>
+        </select>
+    </span>
+    <span v-if="!multiple">
+        <advanced-select :required="required" v-model="newValue" :choices="choices" @input="onInput"></advanced-select>
+    </span>
+</span>

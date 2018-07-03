@@ -1,0 +1,21 @@
+<div>
+
+    <div>
+        <div class="btn-group btn-group-sm">
+            <button class="btn btn-default" :disabled="selectedType == 'line'" @click="selectedType = 'line'"><i class="fa fa-line-chart"></i></button>
+            <button class="btn btn-default" :disabled="selectedType == 'area'" @click="selectedType = 'area'"><i class="fa fa-area-chart"></i></button>
+            <button class="btn btn-default" :disabled="selectedType == 'bar'" @click="selectedType = 'bar'"><i class="fa fa-bar-chart"></i></button>
+        </div>
+    </div>
+
+
+    <div style="display: inline-block;">
+        <canvas></canvas>
+    </div>
+    <div style="display: inline-block; vertical-align: top;">
+        <div data-chart-legend></div>
+        <!--<chart-legend></chart-legend>-->
+    </div>
+
+
+</div>

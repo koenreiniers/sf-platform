@@ -1,0 +1,6 @@
+services:
+
+    raw_api.normalizer.form_error_iterator:
+        class: Raw\Bundle\ApiBundle\Normalizer\FormErrorIteratorNormalizer
+        tags:
+            - { name: serializer.normalizer }

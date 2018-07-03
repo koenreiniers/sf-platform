@@ -1,0 +1,6 @@
+Raw\Bundle\UserBundle\Entity\User:
+    properties:
+        firstName:
+            - NotBlank: ~
+        lastName:
+            - NotBlank: ~

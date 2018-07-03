@@ -1,0 +1,64 @@
+SalesBundle\Entity\Order:
+    type: entity
+    table: sales_order
+    repositoryClass: SalesBundle\Repository\OrderRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: string
+        externalCreatedAt:
+            type: datetime
+        orderNumber:
+            type: string
+        orderDate:
+            type: datetime
+        state:
+            type: string
+        createdAt:
+            type: datetime
+        grandTotal:
+            type: decimal
+            precision: 10
+            scale: 4
+        subtotal:
+            type: decimal
+            precision: 10
+            scale: 4
+        shippingAmount:
+            type: decimal
+            precision: 10
+            scale: 4
+        taxAmount:
+            type: decimal
+            precision: 10
+            scale: 4
+        discountAmount:
+            type: decimal
+            precision: 10
+            scale: 4
+    oneToMany:
+        orderItems:
+            targetEntity: SalesBundle\Entity\OrderItem
+            mappedBy: order
+            cascade: [persist, remove]
+        shipments:
+            targetEntity: SalesBundle\Entity\Shipment
+            mappedBy: order
+            cascade: [persist, remove]
+    manyToOne:
+        customer:
+            targetEntity: CrmBundle\Entity\Customer
+            inversedBy: orders
+        store:
+            targetEntity: AppBundle\Entity\Store
+            inversedBy: orders
+        shippingAddress:
+            targetEntity: CrmBundle\Entity\Address
+            cascade: [persist]
+        billingAddress:
+            targetEntity: CrmBundle\Entity\Address
+            cascade: [persist]

@@ -1,0 +1,4 @@
+<button @click="execute" class="btn btn-sm" :class="action.classes">
+    <i v-if="action.icon !== null" :class="['fa', 'fa-'+action.icon]"></i>
+    {{ action.label }}
+</button>.

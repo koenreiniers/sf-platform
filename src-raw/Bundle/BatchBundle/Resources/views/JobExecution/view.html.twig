@@ -1,0 +1,36 @@
+{% extends 'RawBatchBundle::base.html.twig' %}
+
+{% block page_title %}
+    <h1>{{ jobExecution.jobInstance.code }} ({{ jobExecution.jobInstance.jobName }})</h1>
+{% endblock %}
+
+{% block content %}
+
+    <ul>
+        <li>
+            <a class="btn btn-default" href="{{ path('crud.job-instances.view', {'id': jobExecution.jobInstance.id}) }}">Return</a>
+        </li>
+        <li>
+            <a class="btn btn-default" target="_blank" href="{{ path('raw_batch.job_execution.log', {id: jobExecution.id}) }}">Download log</a>
+        </li>
+    </ul>
+
+    <dl>
+        <dt>Status</dt>
+        <dd>{{ jobExecution.status }}</dd>
+    </dl>
+
+    <span id="job-execution-app">
+            <job-execution id="{{ jobExecution.id }}"></job-execution>
+    </span>
+    <script>
+        jQuery(document).ready(function($){
+
+            new Vue({
+                el: '#job-execution-app',
+            });
+
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+    raw_sass.sass:
+        class: Raw\Component\Sass\Sass
+        arguments:
+            - ''

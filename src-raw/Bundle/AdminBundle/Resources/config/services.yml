@@ -1,0 +1,37 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+    raw_admin.layout.renderer:
+        class: Raw\Component\Layout\Renderer\TwigRenderer
+        arguments:
+            - '@twig'
+            - '%raw_admin.templates%'
+
+    raw_admin.menu.provider.admin:
+        class: Raw\Bundle\AdminBundle\Menu\Provider\AdminMenuProvider
+        arguments:
+            - '@raw_admin.registry'
+            - '@knp_menu.factory'
+        tags:
+            - { name: knp_menu.provider }
+
+
+    raw_admin.routing.loader.admin:
+        class: Raw\Bundle\AdminBundle\Routing\Loader\AdminRouteLoader
+        arguments:
+            - '@raw_admin.registry'
+        tags: ['routing.loader']
+
+    raw_admin.registry:
+        class: Raw\Component\Admin\AdminRegistry
+        arguments:
+            - ''
+            - ''
+            - '@raw_admin.resolved_admin_factory'
+
+    raw_admin.resolved_admin_factory:
+        class: Raw\Component\Admin\ResolvedAdminFactory
+        arguments:
+            - '@router'

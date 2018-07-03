@@ -1,0 +1,14 @@
+{% import 'raw_pager_macros.html.twig' as macros %}
+
+<section class="pagination">
+    {% block form %}
+        {{ form_start(form) }}
+
+        {{ form_widget(form.vars.meta_form) }}
+
+
+        {{ form_widget(form) }}
+
+        {{ form_end(form) }}
+    {% endblock %}
+</section>

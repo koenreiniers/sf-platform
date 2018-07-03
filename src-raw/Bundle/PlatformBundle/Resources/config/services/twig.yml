@@ -1,0 +1,7 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    raw_platform.twig.extension.component:
+        class: Raw\Bundle\PlatformBundle\Twig\ComponentExtension

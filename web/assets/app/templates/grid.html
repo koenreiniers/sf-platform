@@ -1,0 +1,90 @@
+<div class="raw-grid" v-if="initialized">
+
+    <filterer v-if="canFilter()" :definitions="filterDefinitions" :filters="filters" :usersettings="usersettings"></filterer>
+
+    <pagination :data="pagination"></pagination>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Toolbar</h3>
+        <span class="panel-tools">
+
+            <!--<mass-actions @execute="executeMassAction"></mass-actions>-->
+
+            <div class="btn-group" v-if="hasMassActions()">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Bulk actions
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li v-for="massAction in massActions" :class="{ 'disabled': selectedItems.length == 0 }">
+                        <a href="#" @click="executeMassAction(massAction, selectedItems)">
+                            {{ massAction.label }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </span>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+
+        <div class="panel-body no-padding no-border">
+
+
+
+
+            <table class="table table-bordered table-hover" :style="{ opacity: loading ? 0.5 : 1 }">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" @click="selectAll()" :checked="allSelected">
+                        </th>
+                        <th class="sorting" :class="{'sortable': column.sortable}" v-for="(column, columnName) in columns" @click="sortBy(columnName)">
+                            {{ column.label }}
+                            <span v-if="column.sortable">
+                                <i class="fa fa-sort" v-if="sort.by !== columnName"></i>
+                                <i class="fa fa-sort-desc" v-if="sort.by === columnName && sort.dir == 'ASC'"></i>
+                                <i class="fa fa-sort-asc" v-if="sort.by === columnName && sort.dir == 'DESC'"></i>
+                            </span>
+
+                        </th>
+                        <th v-if="hasActions()">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in items">
+                        <td>
+                            <input type="checkbox" @click="select(item)" :checked="isSelected(item)">
+                        </td>
+                        <td v-for="column in columns">
+                            <span class="form-inline" v-if="isEditing(item, column)">
+                                <input class="form-control" :type="getInputType(column.type)" v-model="item[column.property]">
+                            </span>
+                            <span v-if="!isEditing(item, column)" v-html="displayData(item, column)"></span>
+                        </td>
+                        <td v-if="hasActions()">
+                            <div class="btn-group btn-group-sm">
+                                <span v-if="isInlineEditable(item)">
+                                    <button @click="edit(item, null)" v-if="!isEditingItem(item)" class="btn btn-sm btn-default"><i class="fa fa-pencil"></i></button>
+                                    <button @click="saveEdit(item, null)" v-if="isEditingItem(item)" class="btn btn-sm btn-primary"><i class="fa fa-check"></i></button>
+                                    <button @click="cancelEdit(item, null)" v-if="isEditingItem(item)" class="btn btn-sm btn-default"><i class="fa fa-times"></i></button>
+                                </span>
+                            </div>
+
+                            <action v-for="action in actions" @execute="executeAction(action, item)" :action="action"></action>
+                        </td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+.

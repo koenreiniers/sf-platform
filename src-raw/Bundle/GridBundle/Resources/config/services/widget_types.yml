@@ -1,0 +1,6 @@
+services:
+
+    raw_grid.widget.type.grid:
+        class: Raw\Bundle\GridBundle\Widget\Type\GridWidgetType
+        tags:
+            - { name: widget.type, alias: grid }

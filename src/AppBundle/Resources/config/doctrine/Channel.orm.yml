@@ -1,0 +1,28 @@
+AppBundle\Entity\Channel:
+    type: entity
+    table: app_channel
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        platformName:
+            type: string
+        parameters:
+            type: array
+    oneToMany:
+        products:
+            targetEntity: CatalogBundle\Entity\Product
+            mappedBy: channel
+            cascade: [persist, remove]
+        customers:
+            targetEntity: CrmBundle\Entity\Customer
+            mappedBy: channel
+            cascade: [persist, remove]
+        stores:
+            targetEntity: AppBundle\Entity\Store
+            mappedBy: channel
+            cascade: [persist, remove]

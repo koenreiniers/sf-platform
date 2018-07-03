@@ -1,0 +1,19 @@
+Raw\Bundle\ApiBundle\Entity\Token:
+    type: entity
+    table: raw_api_token
+    repositoryClass: Raw\Component\OAuth2\Repository\TokenRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        value:
+            type: string
+        expiresAt:
+            type: datetime
+        type:
+            type: string
+    manyToOne:
+        owner:
+            targetEntity: Raw\Bundle\UserBundle\Entity\User

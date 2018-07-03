@@ -1,0 +1,6 @@
+raw_sass.app.view:
+    path: /raw-sass/apps/{name}
+    defaults:
+        _controller: RawSassBundle:SassApp:view
+    options:
+        expose: true

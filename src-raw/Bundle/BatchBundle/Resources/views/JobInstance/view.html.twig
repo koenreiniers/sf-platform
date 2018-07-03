@@ -1,0 +1,41 @@
+{% extends 'RawBatchBundle::base.html.twig' %}
+
+{% import 'RawGridBundle::macros.html.twig' as dataGrid %}
+{% import 'RawPlatformBundle:Macro:buttons.html.twig' as buttons %}
+
+{% block content_title %}
+    Job instance \ {{ jobInstance.code }}
+{% endblock %}
+
+{% block actions %}
+
+    {{ buttons.return({
+        url: path('raw_batch.job_instance.index')
+    }) }}
+
+    <form class="pull-right form-inline" method="POST">
+
+        {{ buttons.edit(path('raw_batch.job_instance.edit', {
+            id: jobInstance.id
+        })) }}
+        <button class="btn btn-success" name="action" value="launch">Launch</button>
+    </form>
+
+
+{% endblock %}
+
+{% block content %}
+
+    <h3>Previous executions</h3>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            {{ dataGrid.render('job_executions', {
+                jobInstance: jobInstance.id,
+            }) }}
+
+        </div>
+    </div>
+
+{% endblock %}

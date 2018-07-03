@@ -1,0 +1,3 @@
+crm.routing.anno:
+    resource: '@CrmBundle/Controller/'
+    type: annotation

@@ -1,0 +1,48 @@
+raw_dashboard.dashboard.default:
+    path: /dashboard
+    methods: GET
+    defaults:
+        _controller: RawDashboardBundle:Dashboard:view
+
+raw_dashboard.dashboard.view:
+    path: /dashboards/{id}
+    methods: GET
+    defaults:
+        _controller: RawDashboardBundle:Dashboard:view
+    options:
+        expose: true
+
+raw_dashboard.statistic.index:
+    path: /statistics
+    defaults:
+        _controller: RawDashboardBundle:Statistic:index
+    options:
+        expose: true
+
+raw_dashboard.statistic.dataset.index:
+    path: /statistics/datasets
+    defaults:
+        _controller: RawDashboardBundle:Dataset:index
+    options:
+        expose: true
+
+raw_dashboard.statistic.dataset.view:
+    path: /statistics/datasets/{name}
+    defaults:
+        _controller: RawDashboardBundle:Dataset:view
+    options:
+        expose: true
+
+raw_dashboard.statistic.metric.view:
+    path: /statistics/metrics/{name}
+    defaults:
+        _controller: RawDashboardBundle:Statistic:metric
+    options:
+        expose: true
+
+raw_dashboard.statistic.view:
+    path: /statistics/{name}
+    defaults:
+        _controller: RawDashboardBundle:Statistic:view
+    options:
+        expose: true

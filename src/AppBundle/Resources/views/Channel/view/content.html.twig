@@ -1,0 +1,19 @@
+{% include 'SalesBundle:Order/partial:order_amount_per_state.html.twig' with {orderAmountPerState: orderAmountPerState} %}
+
+<nav class="navbar navbar-default">
+    <ul class="navbar-nav nav nav-pills">
+        {% if not authorized %}
+            <li><a href="{{ path('app.channel.authorize', {id: channel.id}) }}">Authorize</a></li>
+        {% endif %}
+        <li><a href="{{ path('app.channel.execute', {id: channel.id, actionName: 'complete_sync'}) }}">Complete sync</a></li>
+        <li><a href="{{ path('app.channel.execute', {id: channel.id, actionName: 'import_stores'}) }}">Import stores</a></li>
+        <li><a href="{{ path('app.channel.execute', {id: channel.id, actionName: 'import_products'}) }}">Import products</a></li>
+        <li><a href="{{ path('app.channel.execute', {id: channel.id, actionName: 'import_customers'}) }}">Import customers</a></li>
+        <li><a href="{{ path('app.channel.execute', {id: channel.id, actionName: 'import_orders'}) }}">Import orders</a></li>
+        <li><a href="{{ path('app.channel.execute', {id: channel.id, actionName: 'export_shipments'}) }}">Export shipments</a></li>
+    </ul>
+</nav>
+
+{% include 'AppBundle:Channel/view:products.html.twig' %}
+
+{% include 'AppBundle:Channel/view:stores.html.twig' %}

@@ -1,0 +1,9 @@
+@import 'colors';
+@import 'levels';
+
+$boxShadow: 0 0 0 #ddd;
+$boxBorder: 1px solid $bgColorDefault;
+$boxBorder: none;
+
+$panelShadow: $boxShadow;
+$panelBorder: $boxBorder;

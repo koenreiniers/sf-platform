@@ -1,0 +1,82 @@
+parameters:
+    raw_batch.logs_dir: '%kernel.logs_dir%/batch'
+
+imports:
+    - { resource: services/* }
+
+services:
+
+    raw_batch.admin.job_instance:
+        class: Raw\Bundle\BatchBundle\Admin\JobInstanceAdmin
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: raw.admin, alias: job-instances }
+
+    raw_batch.command_executor:
+        class: Raw\Component\Console\CommandExecutor
+        arguments:
+            - '@kernel'
+
+    raw_batch.job_loader:
+        class: Raw\Component\Batch\Job\Loader\ContainerLoader
+        arguments:
+            - '@service_container'
+            - ''
+
+    raw_batch.job_executor:
+        class: Raw\Component\Batch\Job\JobExecutor
+        arguments:
+            - '@raw_batch.job_registry'
+            - '@event_dispatcher'
+            - '@doctrine.orm.default_entity_manager'
+
+    raw_batch.job_launcher:
+        class: Raw\Component\Batch\Job\Launcher\SymfonyLauncher
+        arguments:
+            - '@raw_batch.command_executor'
+
+    raw_batch.job_registry:
+        class: Raw\Component\Batch\Job\JobRegistry
+        arguments:
+            - '@raw_batch.job_loader'
+            - '@event_dispatcher'
+
+    raw_grid.batch.job.mass_delete:
+        class: Raw\Component\Batch\Job\Job
+        arguments:
+            -
+                - '@raw_grid.batch.step.mass_delete'
+        tags:
+            - { name: raw_batch.job, alias: grid_mass_delete }
+
+    raw_grid.batch.step.mass_delete:
+        class: Raw\Component\Batch\Step\ItemStep
+        arguments:
+            - 'Mass delete'
+            - '@raw_batch.reader.mass_entity'
+            - '@raw_batch.processor.doctrine_remove'
+            - '@raw_batch.writer.doctrine'
+
+    raw_batch.reader.mass_entity:
+        class: Raw\Component\Batch\Item\Reader\MassEntityReader
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    raw_batch.reader.in_memory:
+        class: Raw\Component\Batch\Item\Reader\InMemoryReader
+        arguments:
+            - []
+
+    raw_batch.writer.doctrine:
+        class: Raw\Component\Batch\Item\Writer\DoctrineWriter
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    raw_batch.writer.null:
+        class: Raw\Component\Batch\Item\Writer\NullWriter
+
+    raw_batch.processor.doctrine_remove:
+        class: Raw\Component\Batch\Item\Processor\DoctrineRemoveProcessor
+        arguments:
+            - '@doctrine.orm.default_entity_manager'

@@ -1,0 +1,53 @@
+notifications:
+    properties:
+        identifier: id
+        className: Raw\Bundle\UserBundle\Entity\Notification
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    o: Raw\Bundle\UserBundle\Entity\Notification
+                select:
+                    - o.id
+                    - o.type
+                    - o.message
+                    - o.read
+                where:
+                    - o.owner = :owner
+        bind_parameters:
+            owner: owner
+    sorters:
+        id:
+            field: o.id
+        type:
+            field: o.type
+        message:
+            field: o.message
+        read:
+            field: o.read
+    columns:
+        id:
+            type: integer
+            label: Identifier
+        type:
+            type: string
+            label: Type
+        message:
+            type: string
+            label: Message
+        read:
+            type: boolean
+            label: Read
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: o.id
+        read:
+            type: enum
+            label: Read
+            field: o.read
+            choices:
+                'Yes': '1'
+                'No': '0'

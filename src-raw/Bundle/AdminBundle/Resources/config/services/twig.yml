@@ -1,0 +1,11 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    raw_admin.twig.extension:
+        class: Raw\Bundle\AdminBundle\Twig\CrudExtension
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: twig.extension }

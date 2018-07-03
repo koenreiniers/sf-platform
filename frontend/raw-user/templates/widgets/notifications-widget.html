@@ -1,0 +1,13 @@
+<div class="box box-default">
+    <div class="box-header">
+        <h3 class="box-title">Notifications</h3>
+    </div>
+    <div class="box-body">
+        <ul>
+            <li v-for="notification in notifications">
+                [{{ notification.type}}] {{ notification.message }} ({{ notification.read ? 'READ' : 'UNREAD' }})
+            </li>
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,3 @@
+sales.routing.anno:
+    resource: '@SalesBundle/Controller/'
+    type: annotation

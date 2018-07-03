@@ -1,0 +1,102 @@
+orders_grid:
+    properties:
+        computed_data:
+            view_url:
+                type: url
+                route: sales.order.view
+                routeParams:
+                    id: :id
+        identifier: id
+        className: SalesBundle\Entity\Order
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    o: SalesBundle\Entity\Order
+                join:
+                    - { join: o.store, alias: store }
+                    - { join: store.channel, alias: channel }
+                select:
+                    - o.id
+                    - o.orderNumber
+                    - o.orderDate
+                    - o.state
+                    - "CONCAT(store.name, ' (', channel.name, ')') AS storeName"
+                where:
+                    - o.state = :state
+        bind_parameters:
+            - state
+    sorters:
+        id:
+            field: o.id
+        orderNumber:
+            field: o.orderNumber
+        orderDate:
+            field: o.orderDate
+#        state:
+#            field: o.state
+        storeName:
+            field: storeName
+    columns:
+#        id:
+#            type: integer
+#            label: Identifier
+        orderNumber:
+            type: string
+            label: 'Order #'
+        orderDate:
+            type: datetime
+            label: Order date
+            formatter: date
+        state:
+            type: string
+            label: State
+            formatter: state
+        storeName:
+            type: string
+            label: Store
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: o.id
+        orderNumber:
+            type: string
+            label: Order number
+            field: o.orderNumber
+        orderDate:
+            type: datetime
+            label: Order date
+            field: o.orderDate
+        store:
+            type: entity
+            class: AppBundle\Entity\Store
+            choice_label: name
+            choices:
+                A: a
+                B: b
+#        state:
+#            type: enum
+#            label: State
+#            field: o.state
+#            choices:
+#                new: New
+#                processing: Processing
+#                cancelled: Cancelled
+#                on_hold: On hold
+#                closed: Closed
+#                completed: Completed
+    actions:
+        view:
+            type: view
+            url: :view_url
+            label: View
+#        edit:
+#            type: edit
+#            url: :edit_url
+#            label: Edit
+#        delete:
+#            type: delete
+#            url: :delete_url
+#            label: Delete

@@ -1,0 +1,63 @@
+products_grid:
+    properties:
+        computed_data:
+            view_url:
+                type: url
+                route: crud.customers.view
+                routeParams:
+                    id: :id
+        identifier: id
+        className: CrmBundle\Entity\Customer
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    o: CrmBundle\Entity\Customer
+                select:
+                    - o.id
+                    - o.email
+                    - FULL_NAME(o) AS name
+    sorters:
+        id:
+            field: o.id
+        email:
+            field: o.email
+        name:
+            field: o.name
+    columns:
+        id:
+            type: integer
+            label: Identifier
+        name:
+            type: string
+            label: Name
+        email:
+            type: string
+            label: Email
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: o.id
+        email:
+            type: string
+            label: Email
+            field: o.email
+        name:
+            type: string
+            label: Name
+            field: name
+    actions:
+        view:
+            type: view
+            url: :view_url
+            label: View
+#        edit:
+#            type: edit
+#            url: :edit_url
+#            label: Edit
+#        delete:
+#            type: delete
+#            url: :delete_url
+#            label: Delete

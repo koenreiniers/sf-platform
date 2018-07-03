@@ -1,0 +1,23 @@
+SalesBundle\Entity\ShipmentItem:
+    type: entity
+    table: sales_shipment_item
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: string
+            nullable: true
+        qty:
+            type: decimal
+            precision: 10
+            scale: 4
+    manyToOne:
+        orderItem:
+            targetEntity: SalesBundle\Entity\OrderItem
+            inversedBy: shipmentItems
+        shipment:
+            targetEntity: SalesBundle\Entity\Shipment
+            inversedBy: shipmentItems

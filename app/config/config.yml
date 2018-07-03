@@ -1,0 +1,141 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: raw/vue.yml }
+    - { resource: raw/user.yml }
+    - { resource: raw/crud.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    serializer: { enabled: true }
+    workflows:
+        shipment_flow:
+            type: state_machine
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'state'
+            supports:
+                - SalesBundle\Entity\Shipment
+            places: [new,processing,completed,deleted]
+            transitions:
+                delete:
+                    from: [new,processing]
+                    to: deleted
+                export:
+                    from: processing
+                    to: completed
+        order_handling:
+            type: state_machine
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'state'
+            supports:
+                - SalesBundle\Entity\Order
+            places: [new, processing, completed, cancelled, on_hold, closed]
+            transitions:
+                unhold:
+                    from: on_hold
+                    to: on_hold
+                hold:
+                    from: [processing,new]
+                    to: on_hold
+                cancel:
+                    from: [processing, new]
+                    to: cancelled
+                ship:
+                    from: processing
+                    to: processing
+    #esi: ~
+    #translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'
+    globals:
+        raw_base_template: 'AppBundle::layout.html.twig'
+        raw_admin_base_template: 'AppBundle::crud.html.twig'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        resolve_target_entities:
+            Raw\Bundle\UserBundle\Entity\User: AppBundle\Entity\User
+        dql:
+            string_functions:
+                FULL_NAME: CrmBundle\Doctrine\Query\Mysql\FullName
+                DAY: Raw\Component\DoctrineExtensions\Query\Mysql\Day
+                MONTH: Raw\Component\DoctrineExtensions\Query\Mysql\Month
+                YEAR: Raw\Component\DoctrineExtensions\Query\Mysql\Year
+                HOUR: Raw\Component\DoctrineExtensions\Query\Mysql\Hour
+                MINUTE: Raw\Component\DoctrineExtensions\Query\Mysql\Minute
+                SECOND: Raw\Component\DoctrineExtensions\Query\Mysql\Second
+                DATE_FORMAT: Raw\Component\DoctrineExtensions\Query\Mysql\DateFormat
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    group:
+        group_class: Raw\Bundle\UserBundle\Entity\UserGroup
+    from_email:
+        address:        registration@example.com
+        sender_name:    Demo Registration

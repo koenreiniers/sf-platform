@@ -1,0 +1,76 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+    raw_grid.mass_action_registry:
+        class: Raw\Component\Grid\Extension\MassActions\MassActionRegistry
+        arguments:
+            - {} #{'batch_job': '@raw_batch.mass_action.batch_job' }
+
+
+    raw_grid.cache.clearer.grid_metadata:
+        class: Raw\Bundle\GridBundle\Cache\GridMetadataCacheClearer
+        arguments:
+            - '@raw_grid.mapping.cache'
+        tags:
+            - { name: kernel.cache_clearer }
+
+    raw_grid.factory:
+        class: Raw\Component\Grid\GridFactory
+        arguments:
+            - '@raw_grid.registry'
+            - '@raw_grid.mapping.metadata_factory'
+
+    raw_grid.mapping.metadata_factory:
+        class: Raw\Component\Grid\Mapping\GridMetadataFactory
+        arguments:
+            - '@raw_grid.mapping.loader'
+            - '@raw_grid.registry'
+            - '@raw_grid.mapping.cache'
+
+    raw_grid.mapping.cache:
+        class: Symfony\Component\Cache\Adapter\FilesystemAdapter
+        arguments:
+            - 'raw-grid-metadata'
+            - 0
+            - '%kernel.cache_dir%'
+
+    raw_grid.registry:
+        class: Raw\Component\Grid\GridRegistry
+        arguments:
+            - ''
+
+    raw_grid.mapping.loader:
+        alias: raw_grid.mapping.loader.chain
+
+    raw_grid.mapping.loader.chain:
+        class: Raw\Component\Grid\Mapping\Loader\ChainLoader
+        arguments:
+            - ['@raw_grid.mapping.loader.yaml_file', '@raw_grid.mapping.loader.simple_entity']
+
+    raw_grid.mapping.loader.simple_entity:
+        class: Raw\Component\Grid\Mapping\Loader\SimpleEntityLoader
+        arguments:
+            - { admin_users: AppBundle\Entity\User }
+            - '@doctrine.orm.default_entity_manager'
+
+    raw_grid.mapping.loader.yaml_file:
+        class: Raw\Component\Grid\Mapping\Loader\YamlFileLoader
+        arguments:
+            - ''
+
+    raw_grid.data_source.factory:
+        alias: raw_grid.data_source.factory.delegating
+
+    raw_grid.data_source.factory.delegating:
+        class: Raw\Component\Grid\DataSource\Factory\DelegatingFactory
+        arguments:
+            - ''
+
+    raw_grid.data_source.factory.doctrine_orm:
+        class: Raw\Component\Grid\DataSource\Factory\DoctrineOrmFactory
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: raw_grid.data_source_factory }

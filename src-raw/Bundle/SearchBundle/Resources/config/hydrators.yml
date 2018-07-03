@@ -1,0 +1,6 @@
+services:
+
+    raw_search.hydrator.doctrine_entity:
+        class: Raw\Search\Hydrator\DoctrineEntityHydrator
+        arguments:
+            - '@doctrine.orm.default_entity_manager'

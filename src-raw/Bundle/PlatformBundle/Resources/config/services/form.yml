@@ -1,0 +1,8 @@
+services:
+
+    raw_platform.form.type_extension.entity_return_identifier:
+        class: Raw\Bundle\PlatformBundle\Form\TypeExtension\EntityReturnIdentifierTypeExtension
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Bridge\Doctrine\Form\Type\EntityType }

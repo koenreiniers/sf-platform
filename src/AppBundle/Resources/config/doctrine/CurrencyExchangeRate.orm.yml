@@ -1,0 +1,18 @@
+AppBundle\Entity\CurrencyExchangeRate:
+    type: entity
+    table: app_currency_exchange_rate
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        from:
+            type: string
+            column: '`from`'
+        to:
+            type: string
+        rate:
+            type: decimal
+            precision: 10
+            scale: 6

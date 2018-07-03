@@ -1,0 +1,30 @@
+{% extends 'bootstrap_3_layout.html.twig' %}
+
+{% block raw_upload_file_widget %}
+    {% if data.entity is not empty %}
+        <div>
+            <em>Preview</em><br/>
+            <img style="width: 100px; height: 100px;" src="{{ path('raw_platform.file.preview', {id: data.entity.id}) }}">
+        </div>
+    {% endif %}
+    <span>
+            {{ form_row(form.entity) }}
+    </span>
+    {{ form_row(form.file) }}
+{% endblock %}
+
+{% block delete_entity_widget %}
+    {{ form_start(form, {
+        attr: {'class': 'form-inline', 'style': 'display: inline-block;'}
+    }) }}
+    {{ form_widget(form.delete, {
+        attr: {
+            class: 'btn btn-danger'
+        },
+    }) }}
+
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}

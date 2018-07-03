@@ -1,0 +1,4 @@
+main_menu:
+#    children:
+#        batch:
+#            import: admin_job-instances

@@ -1,0 +1,26 @@
+Raw\Bundle\VersioningBundle\Entity\Version:
+    type: entity
+    table: raw_versioning_version
+    repositoryClass: Raw\Bundle\VersioningBundle\Repository\VersionRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        resourceName:
+            type: string
+        resourceId:
+            type: string
+        snapshot:
+            type: array
+        changeSet:
+            type: array
+        number:
+            type: integer
+        createdAt:
+            type: datetime
+        context:
+            type: string
+        author:
+            type: string

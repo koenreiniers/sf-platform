@@ -1,0 +1,40 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    _instanceof:
+        Raw\Component\Grid\GridExtension:
+            tags:
+                - { name: raw_grid.extension }
+
+    raw_grid.grid.extension.data_source:
+        class: Raw\Component\Grid\Extension\DataSource\DataSourceExtension
+        arguments:
+            - '@router'
+            - '@raw_grid.data_source.factory'
+
+    raw_grid.grid.extension.mass_action:
+        class: Raw\Component\Grid\Extension\MassActions\MassActionsExtension
+        calls:
+            - [setContainer, ['@service_container']]
+
+    raw_grid.grid.extension.filters:
+        class: Raw\Component\Grid\Extension\Filters\FiltersExtension
+        arguments:
+            - '@raw_filter.factory'
+
+    raw_grid.grid.extension.sorters:
+        class: Raw\Component\Grid\Extension\Sorters\SortersExtension
+
+    raw_grid.grid.extension.pager:
+        class: Raw\Component\Grid\Extension\Pager\PagerExtension
+
+    raw_grid.grid.extension.actions:
+        class: Raw\Component\Grid\Extension\Actions\ActionsExtension
+
+    raw_grid.grid.extension.columns:
+        class: Raw\Component\Grid\Extension\Columns\ColumnsExtension
+
+    raw_grid.grid.extension.properties:
+        class: Raw\Component\Grid\Extension\Properties\PropertiesExtension

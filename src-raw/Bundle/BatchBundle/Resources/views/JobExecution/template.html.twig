@@ -1,0 +1,49 @@
+
+<div>
+
+        <span style="display: none;">
+            <i class="fa fa-refresh"></i>
+        </span>
+
+    <table class="table">
+        <tr>
+            <th>Status</th>
+            <td>
+                <%=jobExecution.status%>
+            </td>
+        </tr>
+    </table>
+
+    <% for(var k in jobExecution.stepExecutions) { %>
+    <% var stepExecution = jobExecution.stepExecutions[k] %>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title"><%=stepExecution.id%></h3>
+                </div>
+                <div class="box-body">
+                    <h4>Status</h4>
+                    <%=stepExecution.status%>
+                    <h4>Summary</h4>
+
+                    <table class="table">
+                        <% for(var key in stepExecution.summary) { var value = stepExecution.summary[key] %>
+                            <tr>
+                                <th><%=key%></th>
+                                <td><%=value%></td>
+                            </tr>
+                        <% } %>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% } %>
+
+
+
+</div>

@@ -1,0 +1,25 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}{{ channel }}{% endblock %}
+
+{% import 'RawPlatformBundle:Macro:buttons.html.twig' as btn %}
+
+{% block page_title %}
+    <h1>Channels / {{ channel }}</h1>
+{% endblock %}
+{% block page_actions %}
+    {{ btn.return({
+        label: 'Return',
+        url: path('app.channel.index')
+    }) }}
+    {{ btn.edit({
+        url: path('app.channel.edit', {id: channel.id})
+    }) }}
+    {{ btn.delete({
+        url: path('app.channel.delete', {id: channel.id})
+    }) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'AppBundle:Channel/view:content.html.twig' %}
+{% endblock %}

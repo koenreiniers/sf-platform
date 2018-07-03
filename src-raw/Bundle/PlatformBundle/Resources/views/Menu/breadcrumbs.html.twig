@@ -1,0 +1,36 @@
+{% extends 'knp_menu_ordered.html.twig' %}
+
+{% block list %}
+    {% if item.level == 0 %}
+        {% set listAttributes = listAttributes|merge({'class': 'breadcrumb'}) %}
+        {{ parent() }}
+    {% else %}
+        {{ block('children') }}
+    {% endif %}
+{% endblock %}
+
+{% block item %}
+    {% if (matcher.isCurrent(item) or matcher.isAncestor(item)) %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block linkElement %}
+    {% if matcher.isCurrent(item) %}
+        {{ block('label') }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{%- block icon -%}
+    {% if item.extras.icon is defined %}
+        {% set icon = item.extras.icon %}
+        <i class="fa fa-{{ icon }}"></i>
+    {% endif %}
+{%- endblock -%}
+
+{% block label %}
+    {{ block('icon') }}
+    {{ parent() }}
+{% endblock %}

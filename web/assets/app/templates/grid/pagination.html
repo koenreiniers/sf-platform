@@ -1,0 +1,52 @@
+
+    <div class="panel panel-default form-inline">
+
+        <div class="panel-body">
+
+            <div class="col-md-4">
+
+            </div>
+
+
+            <div class="col-md-4 text-center">
+                Page
+                <div class="input-group input-group-sm">
+            <span class="input-group-btn">
+                <button :class="{'disabled': page == 1}" @click="firstPage()" class="btn btn-default"><i class="fa fa-step-backward"></i></button>
+            </span>
+            <span class="input-group-btn">
+                <button :class="{'disabled': page == 1}" @click="previousPage()" class="btn btn-default"><i class="fa fa-chevron-left"></i></button>
+            </span>
+                    <input type="number" v-model="page" min="1" :max="amountOfPages" class="form-control">
+            <span class="input-group-btn">
+                <button :class="{'disabled': page == amountOfPages}" @click="nextPage()" class="btn btn-default"><i class="fa fa-chevron-right"></i></button>
+            </span>
+            <span class="input-group-btn">
+                <button :class="{'disabled': page == amountOfPages}" @click="lastPage()" class="btn btn-default"><i class="fa fa-step-forward"></i></button>
+            </span>
+                </div>
+
+                of {{ amountOfPages }} | {{ totalCount }} records
+            </div>
+
+
+            <div class="col-md-4 text-right">
+
+
+                <select class="form-control input-sm" v-model="itemsPerPage">
+                    <option value="10">Show 10</option>
+                    <option value="25">Show 25</option>
+                    <option value="50">Show 50</option>
+                    <option value="100">Show 100</option>
+                    <option value="200">Show 200</option>
+                </select>
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+.

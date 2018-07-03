@@ -1,0 +1,33 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% import 'RawPlatformBundle:Macro:buttons.html.twig' as btn %}
+
+{% block title %}Delete {{ channel }}{% endblock %}
+
+{% block page_title %}
+    <h1>Channels / {{ channel }} / delete</h1>
+{% endblock %}
+
+{% block page_actions %}
+
+    {{ btn.return({
+        url: path('app.channel.view', {id: channel.id})
+    }) }}
+
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Are you sure? This cannot be undone.
+    </p>
+
+    {{ form(form) }}
+
+    {{ btn.cancel({
+        url: path('app.channel.view', {id: channel.id}),
+    }) }}
+
+
+
+{% endblock %}

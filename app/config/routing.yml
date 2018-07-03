@@ -1,0 +1,40 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+sales:
+    resource: '@SalesBundle/Resources/config/routing.yml'
+
+crm:
+    resource: '@CrmBundle/Resources/config/routing.yml'
+
+catalog:
+    resource: '@CatalogBundle/Resources/config/routing.yml'
+
+#raw_batch:
+#    resource: '@RawBatchBundle/Resources/config/routing.yml'
+#    prefix: /batch
+
+raw:
+    resource: 'routing/raw.yml'
+
+raw_api:
+    resource: 'routing/api.yml'
+    prefix: /api/v1
+    defaults:
+        _api:
+            version: 1
+
+
+#FOS User Bundle
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+admin_fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix: /admin
+
+#FOS Js Routing
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+

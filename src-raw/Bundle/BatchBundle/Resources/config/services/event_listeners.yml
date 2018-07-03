@@ -1,0 +1,14 @@
+
+services:
+
+    raw_batch.event_subscriber.job_instance:
+        class: Raw\Bundle\BatchBundle\EventSubscriber\JobInstanceSubscriber
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    raw_batch.event_listener.flush_job_execution:
+        class: Raw\Component\Batch\EventListener\FlushJobExecutionListener
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: kernel.event_listener, event: raw_batch.update, method: onUpdate }

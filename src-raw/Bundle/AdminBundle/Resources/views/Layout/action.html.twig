@@ -1,0 +1,57 @@
+{% import 'RawPlatformBundle:Macro:buttons.html.twig' as buttons %}
+
+{% set action = node %}
+
+{% if action.type == 'post' %}
+    <form style="display: inline;" class="form-inline" method="POST" action="{{ path(action.route, action.routeParameters) }}">
+        {{ buttons.submit({
+            label: action.label,
+            level: action.level,
+        }) }}
+    </form>
+{% endif %}
+{% if action.type == 'return' %}
+    {% set url = app.request.headers.get('referer') %}
+    {% if action.route is not empty %}
+        {% set url = admin.generateUrl(action.route, action.routeParameters) %}
+    {% endif %}
+    {{ buttons.return({
+        url: url,
+        label: action.label,
+        level: action.level
+    }) }}
+{% endif %}
+{% if action.type == 'create' %}
+    {{ buttons.create({
+        url: admin.generateUrl(action.route, action.routeParameters),
+        label: action.label,
+        level: action.level
+    }) }}
+{% endif %}
+{% if action.type == 'edit' %}
+    {{ buttons.edit({
+        url: admin.generateUrl(action.route, action.routeParameters),
+        label: action.label,
+        level: action.level
+    }) }}
+{% endif %}
+{% if action.type == 'delete' %}
+    {{ buttons.delete({
+        url: admin.generateUrl(action.route, action.routeParameters),
+        label: action.label,
+        level: action.level
+    }) }}
+{% endif %}
+{% if action.type == 'save' %}
+    {{ buttons.save({
+        label: action.label,
+        level: action.level
+    }) }}
+{% endif %}
+{% if action.type == 'navigate' %}
+    {{ buttons.anchor({
+        url: admin.generateUrl(action.route, action.routeParameters),
+        label: action.label,
+        level: action.level
+    }) }}
+{% endif %}

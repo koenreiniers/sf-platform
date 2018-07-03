@@ -1,0 +1,38 @@
+CrmBundle\Entity\Address:
+    type: entity
+    table: crm_address
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: string
+            nullable: true
+        namePrefix:
+            type: string
+            nullable: true
+        nameSuffix:
+            type: string
+            nullable: true
+        firstName:
+            type: string
+        middleName:
+            type: string
+            nullable: true
+        lastName:
+            type: string
+        company:
+            type: string
+            nullable: true
+        street:
+            type: string
+        city:
+            type: string
+    manyToOne:
+        channel:
+            targetEntity: AppBundle\Entity\Channel
+        customer:
+            targetEntity: CrmBundle\Entity\Customer
+            inversedBy: addresses

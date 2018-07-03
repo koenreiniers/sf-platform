@@ -1,0 +1,19 @@
+raw_batch.job_instance.launch:
+    path: /job-instances/{id}/launch
+    methods: POST
+    defaults:
+        _controller: RawBatchBundle:JobInstance:launch
+
+raw_batch.job_execution.view:
+    path: /job-executions/{id}
+    defaults:
+        _controller: RawBatchBundle:JobExecution:view
+    options:
+        expose: true
+
+raw_batch.job_execution.log:
+    path: /job-executions/{id}/log
+    defaults:
+        _controller: RawBatchBundle:JobExecution:log
+    options:
+        expose: true

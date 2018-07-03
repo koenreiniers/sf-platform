@@ -1,0 +1,8 @@
+services:
+    raw_batch.mass_action.batch_job:
+        class: Raw\Bundle\BatchBundle\MassAction\BatchJobMassAction
+        arguments:
+            - '@raw_batch.job_launcher'
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: raw_grid.mass_action, alias: batch_job }

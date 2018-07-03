@@ -1,0 +1,19 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button @click="close()" type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <slot name="header"></slot>
+
+            </div>
+            <div class="modal-body">
+                <slot></slot>
+            </div>
+            <div class="modal-footer">
+                <slot name="footer"></slot>
+            </div>
+        </div>
+    </div>
+</div>.

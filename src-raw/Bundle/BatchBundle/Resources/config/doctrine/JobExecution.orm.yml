@@ -1,0 +1,31 @@
+Raw\Bundle\BatchBundle\Entity\JobExecution:
+    type: entity
+    table: raw_batch_job_execution
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        status:
+            type: string
+        startedAt:
+            type: datetime
+            nullable: true
+        endedAt:
+            type: datetime
+            nullable: true
+        logPath:
+            type: string
+            nullable: true
+    manyToOne:
+        jobInstance:
+            targetEntity: Raw\Bundle\BatchBundle\Entity\JobInstance
+            inversedBy: jobExecutions
+        owner:
+            targetEntity: Raw\Bundle\UserBundle\Entity\User
+    oneToMany:
+        stepExecutions:
+            targetEntity: Raw\Bundle\BatchBundle\Entity\StepExecution
+            mappedBy: jobExecution
+            cascade: [persist, remove]

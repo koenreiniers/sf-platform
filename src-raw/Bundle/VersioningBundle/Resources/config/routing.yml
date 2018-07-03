@@ -1,0 +1,4 @@
+raw_versioning.version.restore:
+    path: /versions/{id}/restore
+    defaults:
+        _controller: RawVersioningBundle:Version:restore

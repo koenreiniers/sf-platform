@@ -1,0 +1,25 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% import 'RawGridBundle::macros.html.twig' as grid %}
+
+{% block title %}Orders{% endblock %}
+
+{% block page_title %}
+    <h1>Orders</h1>
+{% endblock %}
+
+{% block content %}
+
+
+
+
+    <ul class="nav nav-tabs">
+        {% for state in get_order_states() %}
+            <li class="{{ state == selectedState ? 'active' : '' }}">
+                <a href="{{ path('sales.order.index', {state: state}) }}">{{ state }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {{ grid.render('orders_grid', {state: selectedState}) }}
+{% endblock %}

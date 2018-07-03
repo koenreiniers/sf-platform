@@ -1,0 +1,16 @@
+<div>
+    <table class="table">
+        <tr v-for="widgetType in widgetTypes">
+            <td>
+                <i :class="['fa', 'fa-'+widgetType.icon]"></i>
+            </td>
+            <td>
+                <strong>{{ widgetType.label }}</strong>
+                <p>{{ widgetType.description }}</p>
+            </td>
+            <td>
+                <button class="btn btn-primary btn-sm" @click="addWidget(widgetType)">Add</button>
+            </td>
+        </tr>
+    </table>
+</div>.

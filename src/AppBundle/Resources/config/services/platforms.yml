@@ -1,0 +1,31 @@
+services:
+
+    app.platform_registry:
+        class: Platform\PlatformRegistry
+        arguments:
+            - {'magento': '@app.platform.magento', bol: '@app.platform.bol'}
+
+
+    app.platform_helper:
+        class: Platform\PlatformHelper
+        arguments:
+            - '@app.platform_registry'
+            - '@doctrine.orm.default_entity_manager'
+
+    app.platform.magento:
+        class: Platform\Magento\MagentoAdapter
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@app.mage_rest_factory'
+            - '@app.platform.magento.order_importer'
+
+    app.platform.bol:
+        class: Platform\Bol\BolPlatformAdapter
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    app.platform.magento.order_importer:
+        class: Platform\Magento\Importer\OrderImporter
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@app.mage_rest_factory'

@@ -1,0 +1,41 @@
+{
+  "dist": "../web/assets/app",
+  "imports": [
+    "raw/config.json",
+    "raw-api/config.json",
+    "raw-dashboard/config.json",
+    "raw-grid/config.json",
+    "raw-sass/config.json",
+    "raw-user/config.json",
+    "raw-vue/config.json",
+    "raw-batch/config.json",
+    "app/config.json"
+  ],
+  "sass": {
+    "paths": ["app/scss/app.scss", "raw-dashboard/scss/main.scss", "raw-grid/scss/main.scss"],
+    "files": {
+      "../web/assets/app/app.cssg": "app/scss/app.scssg"
+    }
+  },
+  "browserify": {
+    "dest": "../web/assets/app/app.js",
+    "src": [],
+    "aliasBak": {
+      "bootstrap": "./vendor-tiny/bootstrap.js",
+      "jquery": "./vendor-tiny/jquery.js",
+      "jquery-serializejson": "./vendor-tiny/jquery-serializejson.js",
+      "moment": "./vendor-tiny/moment.js",
+      "jquery-ui": "./lib/jquery-ui.js",
+      "vue": "./lib/vue.js"
+    },
+    "alias": {
+      "bootstrap-daterangepicker": "./lib/bootstrap-daterangepicker.js",
+      "gridstack.jquery-ui": "./lib/gridstack.jquery-ui.js",
+      "gridstack": "./lib/gridstack.js",
+      "jquery": "./vendor-tiny/jquery.js",
+      "jquery-ui": "./vendor-tiny/jquery-ui.js",
+      "jquery-serializejson": "./vendor-tiny/jquery-serializejson.js",
+      "vue": "./vendor-tiny/vue.js"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "browserify": {
+    "base_path": "./raw-dashboard/",
+    "alias": {
+      "raw-dashboard": "src/raw-dashboard.js",
+      "raw-dashboard/components": "src/components.js"
+    },
+    "src": [
+      "src/autoload.js"
+    ]
+  },
+  "templates": {
+    "dashboard": "./raw-dashboard/templates/components/dashboard.html",
+    "widget": "./raw-dashboard/templates/components/widget.html",
+    "widget/edit": "./raw-dashboard/templates/components/widget-form.html",
+    "widget/create": "./raw-dashboard/templates/components/create-widget.html",
+    "widgets/grid": "./raw-dashboard/templates/widgets/grid-widget.html",
+    "widgets/example": "./raw-dashboard/templates/widgets/example-widget.html",
+    "widgets/welcome_message": "./raw-dashboard/templates/widgets/welcome-message-widget.html",
+    "widgets/info_box": "./raw-dashboard/templates/widgets/info-box-widget.html",
+    "widgets/chart": "./raw-dashboard/templates/widgets/chart-widget.html"
+  }
+
+}

@@ -1,0 +1,27 @@
+raw_admin:
+    admins:
+        channels:
+            className: AppBundle\Entity\Channel
+            form:
+                type: AppBundle\Form\Type\ChannelType
+                layout:
+                    tabs:
+                        general:
+                            fieldsets:
+                                fs1:
+                                    fields: ['name', 'platformName']
+                        parameters:
+                            fields: ['parameters']
+            list:
+                type: grid
+                gridName: channels_grid
+            view:
+
+                layout:
+                    tabs:
+                        general:
+                            fieldsets:
+                                fs1:
+                                    fields: ['name', 'platformName']
+                        parameters:
+                            fields: ['parameters']

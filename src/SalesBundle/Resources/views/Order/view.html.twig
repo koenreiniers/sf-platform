@@ -1,0 +1,114 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% set currency = order.store.currencyCode %}
+
+{% block title %}{{ order }}{% endblock %}
+
+{% block page_title %}
+    <h1>
+        {{ order }}
+        {{ order_state_label(order.state) }}
+    </h1>
+{% endblock %}
+
+{% macro address_details(address) %}
+    First name: {{ address.firstName }}<br/>
+    Last name: {{ address.lastName }}<br/>
+    City: {{ address.city }}<br/>
+    Street: {{ address.street }}<br/>
+{% endmacro %}
+
+{% block content %}
+
+    {% import _self as macros %}
+
+    <ul class="nav nav-pills">
+        {% set transitions = ['cancel', 'hold', 'unhold'] %}
+        {% for transition in transitions %}
+            {% if workflow_can(order, transition) %}
+                <li>
+                    <a href="{{  path('sales.order.transition', {id: order.id, transitionName: transition}) }}">{{ transition }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Items</h3>
+                </div>
+                <div class="panel-body">
+                    {% include 'SalesBundle:Order/view:order_items.html.twig' %}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Shipments</h3>
+                </div>
+                <div class="panel-body">
+                    {% include 'SalesBundle:Order/view:shipments.html.twig' %}
+
+                    {% if newShipmentForm is defined %}
+                        {% include 'SalesBundle:Order/view:shipment_form.html.twig' %}
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Order details</h3>
+                </div>
+                <div class="panel-body">
+                    Store: {{ order.store.name }}<br/>
+                    External ID: {{ order.externalId }}<br/>
+                    Order date: {{ order.orderDate | date_format() }}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Customer details</h3>
+                </div>
+                <div class="panel-body">
+                    {% if order.customer is not empty %}
+                        Name: {{ order.customer.fullName }}<br/>
+                    {% else %}
+                        <em>This order was checked out as a guest</em>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Shipping address</h3>
+                </div>
+                <div class="panel-body">
+                    {{ macros.address_details(order.shippingAddress) }}
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">Billing address</h3>
+                </div>
+                <div class="panel-body">
+                    {{ macros.address_details(order.billingAddress) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

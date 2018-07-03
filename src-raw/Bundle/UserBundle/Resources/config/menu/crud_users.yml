@@ -1,0 +1,13 @@
+crud_users:
+    label: 'User management'
+    uri: '#'
+    children:
+        users:
+            label: 'Users'
+            route: crud.users.index
+            extras:
+                routes:
+                    - crud.users.view
+                    - crud.users.edit
+                    - crud.users.delete
+                    - crud.users.create

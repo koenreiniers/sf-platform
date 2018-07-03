@@ -1,0 +1,57 @@
+{% macro button(options) %}
+    {% set defaults = {
+    attr: {},
+    label: null,
+    icon: null,
+    active: false,
+    class: 'btn',
+    activeClass: 'btn-primary',
+    inactiveClass: 'btn-default',
+    } %}
+    {% set options = defaults | merge(options) %}
+    {% import _self as macros %}
+    {% set classes = [] %}
+    {% if options.class is not empty %}
+        {% set classes = classes | merge([options.class]) %}
+    {% endif %}
+    {% if options.active and options.activeClass is not empty %}
+        {% set classes = classes | merge([options.activeClass]) %}
+    {% elseif options.inactiveClass is not empty %}
+        {% set classes = classes | merge([options.inactiveClass]) %}
+    {% endif %}
+    {% set attr = options.attr | merge({
+    class: classes | join(' '),
+    }) %}
+    {% set label = options.label %}
+    {% if options.icon is not empty %}
+        {% set label %}
+            <i class="fa fa-{{ options.icon }}"></i>
+            {{ label }}
+        {% endset %}
+    {% endif %}
+    <a {{ macros.attributes(attr) }}>
+        {{ label }}
+    </a>
+{% endmacro %}
+
+{%- macro attributes(attr) -%}
+    {% for k, v in attr %}
+        {{ k }}="{{ v }}"
+    {% endfor %}
+{%- endmacro -%}
+
+{% macro page_button(pager, p, options) %}
+    {% import _self as macros %}
+    {% set defaults = {
+    attr: {
+    href: macros.merge_path({'page': p})
+    },
+    active: p == pager.vars.currentPage
+    } %}
+    {% set options = defaults | merge(options) %}
+    {{ macros.button(options) }}
+{% endmacro %}
+
+{% macro merge_path(params) %}{% spaceless %}
+    {{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | merge(params)) }}
+{% endspaceless %}{% endmacro %}

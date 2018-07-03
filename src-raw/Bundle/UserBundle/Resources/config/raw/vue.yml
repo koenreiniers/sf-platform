@@ -1,0 +1,3 @@
+raw_vue:
+    templates:
+        templates/widgets/notifications: '@RawUserBundle/Resources/public/widgets/notifications-widget.html'

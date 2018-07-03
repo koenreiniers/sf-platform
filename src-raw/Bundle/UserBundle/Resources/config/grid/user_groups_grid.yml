@@ -1,0 +1,70 @@
+user_groups_grid:
+    properties:
+        computed_data:
+            view_url:
+                type: url
+                route: crud.user-groups.view
+                routeParams:
+                    id: :id
+            edit_url:
+                type: url
+                route: crud.user-groups.edit
+                routeParams:
+                    id: :id
+            delete_url:
+                type: url
+                route: crud.user-groups.delete
+                routeParams:
+                    id: :id
+        identifier: id
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    o: Raw\Bundle\UserBundle\Entity\UserGroup
+                select:
+                    - o.id
+                    - o.name
+                    - o.code
+    sorters:
+        id:
+            field: o.id
+        code:
+            field: o.code
+        name:
+            field: o.name
+    columns:
+        id:
+            type: integer
+            label: Identifier
+        code:
+            label: Code
+        name:
+            label: Name
+    actions:
+        view:
+            type: view
+            url: :view_url
+            label: View
+        edit:
+            type: edit
+            url: :edit_url
+            label: Edit
+        delete:
+            type: delete
+            url: :delete_url
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: o.id
+        code:
+            type: string
+            label: Code
+            field: o.code
+        name:
+            type: string
+            label: name
+            field: o.name
+    mass_actions: []

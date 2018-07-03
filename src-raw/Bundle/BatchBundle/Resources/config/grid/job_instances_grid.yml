@@ -1,0 +1,52 @@
+job_instances_grid:
+    properties:
+        identifier: id
+        className: Raw\Bundle\BatchBundle\Entity\JobInstance
+        computed_data:
+            view_url:
+                type: url
+                route: crud.job-instances.view
+                routeParams:
+                    id: :id
+            edit_url:
+                type: url
+                route: crud.job-instances.edit
+                routeParams:
+                    id: :id
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    jobInstance: Raw\Bundle\BatchBundle\Entity\JobInstance
+                select:
+                    - jobInstance.id
+                    - jobInstance.code
+                    - jobInstance.jobName
+    columns:
+        id:
+            type: integer
+            label: Identifier
+            property: id
+        code:
+            type: string
+            label: Code
+            property: code
+        jobName:
+            type: string
+            label: Job name
+            property: jobName
+    sorters:
+        id:
+            field: jobInstance.id
+        code:
+            field: jobInstance.code
+        jobName:
+            field: jobInstance.jobName
+    filters: []
+    actions:
+        view:
+            type: view
+            url: :view_url
+            label: View
+    mass_actions: []

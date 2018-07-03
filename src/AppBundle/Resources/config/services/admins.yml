@@ -1,0 +1,10 @@
+services:
+
+    app.admin.channel:
+        class: AppBundle\Admin\ChannelAdmin
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: raw.admin, alias: channels }
+        calls:
+            - [setContainer, ['@service_container']]

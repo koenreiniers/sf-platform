@@ -1,0 +1,10 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+
+    raw_vue.registry:
+        class: Raw\Bundle\VueBundle\Vue\VueRegistry
+        arguments:
+            - ''

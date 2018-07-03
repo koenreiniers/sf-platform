@@ -1,0 +1,27 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% import 'RawGridBundle::macros.html.twig' as grid %}
+
+{% import 'RawPlatformBundle:Macro:buttons.html.twig' as btns %}
+
+{% block title %}Channels{% endblock %}
+
+{% block page_title %}
+    <h1>Channels</h1>
+{% endblock %}
+
+{% block page_actions %}
+
+    {{ btns.create({
+        url: path('app.channel.create'),
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+    {{ grid.render('channels') }}
+
+{% endblock %}

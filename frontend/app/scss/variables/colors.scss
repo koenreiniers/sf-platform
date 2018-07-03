@@ -1,0 +1,37 @@
+$navy: #37455a;
+$blue: #337ab7;//#abbdd3;
+$cyan: #a3d9cb;
+$peach: #ff9d7a;
+$red: #d43f3a;
+$aqua: #00c0ef;
+$beige: #F5F5DC;
+$white: #fff;
+$yellow: #f0ad4e;
+$green: #00a65a;
+$grey: #ddd;
+$lightGrey: #ecf0f5;
+
+$colors: (
+        "navy": $navy,
+        "blue": $blue,
+        "cyan": $cyan,
+        "peach": $peach,
+        "red": $red,
+        "aqua": $aqua,
+        "beige": $beige,
+        "white": $white,
+        "yellow": $yellow,
+        "green": $green,
+        "grey": $grey,
+        "lightGrey": $lightGrey,
+);
+
+@mixin gen-props($prefix, $property) {
+  @each $color-name, $color in $colors {
+    .#{$prefix}-#{$color-name} {
+      #{$property}: $color
+    }
+  }
+}
+@include gen-props('bg', 'background');
+@include gen-props('text', 'color');

@@ -1,0 +1,39 @@
+services:
+
+    raw_pager.registry:
+        class: Raw\Pager\PagerRegistry
+
+    raw_pager.extension.core:
+        class: Raw\Pager\Extension\Core\CoreExtension
+        arguments:
+            - '@raw_pager.registry'
+        tags:
+            - { name: raw_pager.extension }
+
+    raw_pager.extension.http_kernel:
+        class: Raw\Pager\Extension\HttpKernel\HttpKernelExtension
+        arguments:
+            - '@raw_pager.extension.http_kernel.subscriber'
+        tags:
+            - { name: raw_pager.extension }
+
+    raw_pager.extension.http_kernel.subscriber:
+        class: Raw\Pager\Extension\HttpKernel\HttpKernelSubscriber
+        arguments:
+            - '@raw_pager.registry'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    raw_pager.extension.form:
+        class: Raw\Pager\Extension\Form\FormExtension
+        arguments:
+            - '@form.factory'
+        tags:
+            - { name: raw_pager.extension }
+
+    raw_pager.extension.http_foundation:
+        class: Raw\Pager\Extension\HttpFoundation\HttpFoundationExtension
+        arguments:
+            - ~
+        tags:
+            - { name: raw_pager.extension }

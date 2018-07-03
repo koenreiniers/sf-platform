@@ -1,0 +1,6 @@
+
+services:
+    app.form.type.channel:
+        class: AppBundle\Form\Type\ChannelType
+        arguments:
+            - '@app.platform_registry'

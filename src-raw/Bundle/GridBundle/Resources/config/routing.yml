@@ -1,0 +1,14 @@
+raw_grid.grid.view:
+    path: /grids/{gridName}
+    methods: GET
+    defaults:
+        _controller: RawGridBundle:Grid:view
+    options:
+        expose: true
+
+raw_grid.grid.data:
+    path: /grids/{gridName}/data
+    defaults:
+        _controller: RawGridBundle:Grid:data
+    options:
+        expose: true

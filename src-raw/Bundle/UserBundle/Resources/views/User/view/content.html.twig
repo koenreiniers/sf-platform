@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-md-9">
+
+
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">General</h3>
+            </div>
+            <div class="box-body">
+                Username: {{ user.username }}<br/>
+                Enabled: {{ user.enabled }}<br/>
+            </div>
+        </div>
+
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">History</h3>
+            </div>
+            <div class="box-body">
+                {% include 'RawAdminBundle:Admin:versions.html.twig' with {versions: versions} %}
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Personal info</h3>
+            </div>
+            <div class="box-body">
+                <dl>
+                    <dt>Name</dt>
+                    <dd>{{ user.fullName }}</dd>
+                    <dt>Email address</dt>
+                    <dd>{{ user.email }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Security</h3>
+            </div>
+            <div class="box-body">
+                <dl>
+                    <dt>Groups</dt>
+                    <dd>
+                        <ul>
+                            {% for groupName in user.groupNames %}
+                                <li>{{ groupName }}</li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                    <dt>Roles</dt>
+                    <dd>
+                        <ul>
+                            {% for role in user.roles %}
+                                <li>{{ role }}</li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                </dl>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

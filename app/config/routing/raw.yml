@@ -1,0 +1,30 @@
+#raw_platform:
+#    resource: '@RawPlatformBundle/Resources/config/routing.yml'
+
+raw_batch:
+    resource: '@RawBatchBundle/Resources/config/routing.yml'
+    prefix: /batch
+
+raw_user:
+    resource: '@RawUserBundle/Resources/config/routing.yml'
+
+raw_grid:
+    resource: '@RawGridBundle/Resources/config/routing.yml'
+
+raw_dashboard:
+    resource: '@RawDashboardBundle/Resources/config/routing.yml'
+
+raw_sass:
+    resource: '@RawSassBundle/Resources/config/routing.yml'
+
+raw_admin:
+    resource: '@RawAdminBundle/Resources/config/routing.yml'
+
+
+raw_versioning:
+    resource: '@RawVersioningBundle/Resources/config/routing.yml'
+
+raw_admins:
+    resource: .
+    type: raw_admin
+    prefix: /crud

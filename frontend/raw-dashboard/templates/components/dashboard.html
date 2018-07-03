@@ -1,0 +1,79 @@
+<div class="raw-dashboard">
+
+
+    <section class="content-header">
+        <h1 class="form-inline">
+
+            <span class="pull-right">
+                <select v-model="dashboard.id" class="form-control">
+                    <option :value="dashboardChoice.id" v-for="dashboardChoice in dashboards">{{ dashboardChoice.name }} <span v-if="dashboardChoice.default">(Default)</span></option>
+                </select>
+            </span>
+
+            Dashboard -
+            <span v-if="!editingName">
+                {{ dashboard.name }}
+                <button @click="editName()" class="btn btn-xs btn-default">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </span>
+            <span v-if="editingName">
+                <input v-model="dashboard.name" class="form-control">
+                <button @click="saveName()" class="btn btn-xs btn-default">
+                    <i class="fa fa-check"></i>
+                </button>
+            </span>
+        </h1>
+
+
+    </section>
+
+    <section class="dashboard-toolbar">
+        <div class="box box-default">
+            <div class="box-body form-inline">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label">
+                            Date range:
+                            <date-range-picker v-model="dashboard.dateRange"></date-range-picker>
+                        </label>
+                        </div>
+                        <div class="col-md-6 text-right">
+                        <button @click="addWidgets()" class="btn btn-icon btn-default">
+                            <i class="fa fa-plus"></i>
+                            Add widgets
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+
+
+
+        <modal :show="addingWidgets" @hide="addingWidgets = false">
+
+                <h4 slot="header" class="modal-title">Select a type of widget</h4>
+
+            <div slot="footer">
+                <button class="btn btn-default" @click="addWidgets()">Close</button>
+            </div>
+            <raw-create-widget @add="createWidget"></raw-create-widget>
+        </modal>
+
+
+        <div class="row grid-stack">
+            <div class="grid-stack-item" v-for="widget in widgets"
+                 :data-widget-id="widget.id"
+                 :data-gs-width="widget.width" :data-gs-height="widget.height"
+                 :data-gs-x="widget.x" :data-gs-y="widget.y"
+                 :data-gs-no-resize="!isResizable(widget)"
+            >
+                <raw-widget @move="reload" @remove="remove" :widget="widget" :dashboard="dashboard"></raw-widget>
+            </div>
+        </div>
+    </section>
+
+</div>

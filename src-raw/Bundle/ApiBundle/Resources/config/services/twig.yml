@@ -1,0 +1,9 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    raw_api.twig.extension:
+        class: Raw\Bundle\ApiBundle\Twig\ApiExtension
+        calls:
+            - [setContainer, ['@service_container']]

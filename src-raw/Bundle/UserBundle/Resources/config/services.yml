@@ -1,0 +1,15 @@
+#raw_acl:
+#    entities:
+#        use Raw\Bundle\UserBundle\Entity\User:
+#            permissions:
+#                - list
+#                - create
+#                - edit
+#                - view
+#                - delete
+
+imports:
+    - { resource: services/* }
+
+services:
+

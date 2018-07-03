@@ -1,0 +1,35 @@
+raw_user.user.index:
+    path: /users
+    defaults:
+        _controller: RawAdminBundle:Crud:index
+        verb: index
+
+raw_user.user.create:
+    path: /users/create
+    defaults:
+        _controller: RawAdminBundle:Crud:create
+        verb: create
+
+#raw_user.user.view:
+#    path: /users/{id}
+#    defaults:
+#        _controller: RawAdminBundle:Crud:view
+#        verb: view
+
+raw_user.user.view:
+    path: /users/{id}
+    defaults:
+        _controller: RawUserBundle:User:view
+
+raw_user.user.edit:
+    path: /users/{id}/edit
+    defaults:
+        _controller: RawUserBundle:User:edit
+        #_controller: RawAdminBundle:Crud:verb
+        verb: edit
+
+raw_user.user.delete:
+    path: /users/{id}/delete
+    defaults:
+        _controller: RawAdminBundle:Crud:verb
+        verb: delete

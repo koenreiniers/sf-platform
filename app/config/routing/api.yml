@@ -1,0 +1,11 @@
+raw_user.api:
+    resource: '@RawUserBundle/Resources/config/routing/api.yml'
+
+raw_dashboard.api:
+    resource: '@RawDashboardBundle/Resources/config/routing/api.yml'
+
+raw_grid.api:
+    resource: '@RawGridBundle/Resources/config/routing/api.yml'
+
+#raw_batch.api:
+#    resource: '@RawBatchBundle/Resources/config/routing/api.yml'

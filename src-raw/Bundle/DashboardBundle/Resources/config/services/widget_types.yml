@@ -1,0 +1,19 @@
+services:
+    raw_dashboard.widget.welcome_message:
+        class: Raw\Component\Widget\Type\WelcomeMessageType
+        tags:
+            - { name: widget.type, alias: welcome_message }
+
+    raw_dashboard.widget.type.example:
+        class: Raw\Component\Widget\Type\ExampleType
+        tags:
+            - { name: widget.type, alias: example }
+
+    raw_dashboard.widget.type.info_box:
+        class: Raw\Bundle\DashboardBundle\Widget\Type\InfoBoxWidgetType
+        tags:
+            - { name: widget.type, alias: info_box }
+
+    Raw\Bundle\DashboardBundle\Widget\Type\ChartWidgetType:
+        tags:
+            - { name: widget.type, alias: chart }

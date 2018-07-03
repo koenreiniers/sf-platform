@@ -1,0 +1,26 @@
+{% extends raw_base_template %}
+
+{% block page_title %}
+    <h1>
+        Admins
+    </h1>
+
+{% endblock %}
+
+{% block title %}
+    Admins
+{% endblock %}
+
+{% block content %}
+
+    <ul>
+        {% for admin in admins %}
+            <li>
+                <a href="{{ admin.generateUrl('list') }}">{{ admin.alias | humanize }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}

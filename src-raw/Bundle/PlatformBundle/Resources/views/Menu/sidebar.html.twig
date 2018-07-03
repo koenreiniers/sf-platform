@@ -1,0 +1,46 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block list %}
+    {% if item.level == 0 %}
+        {% set listAttributes = listAttributes|merge({'class': 'sidebar-menu'}) %}
+    {% else %}
+        {% set listAttributes = listAttributes|merge({'class': 'treeview-menu'}) %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block children %}
+    {% if item.level == 0 %}
+        {% if item.label is not empty %}
+        <li class="header">{{ item.label | upper }}</li>
+        {% endif %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block icon %}
+    {% set icon = 'circle-o' %}
+    {% if item.extras.icon is defined %}
+        {% set icon = item.extras.icon %}
+    {% endif %}
+    <i class="fa fa-{{ icon }}"></i>
+{% endblock %}
+
+{% block label_text %}
+    {% if options.allow_safe_labels and item.getExtra('safe_label', false) %}
+        {{ item.label | trans | raw }}
+    {% else %}
+        {{ item.label | trans }}
+    {% endif %}
+{% endblock %}
+
+{% block label %}
+    {{ block('icon') }}
+    <span>
+        {{ block('label_text') }}
+    </span>
+
+    {% if item.hasChildren() %}
+        <i class="fa fa-angle-left pull-right"></i>
+    {% endif %}
+{% endblock %}

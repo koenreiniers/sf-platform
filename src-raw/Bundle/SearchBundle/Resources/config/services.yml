@@ -1,0 +1,42 @@
+imports:
+    - { resource: hydrators.yml }
+    - { resource: event_listeners.yml }
+
+services:
+
+
+
+    raw_search.class_metadata_factory:
+        class: Raw\Search\Mapping\ClassMetadataFactory
+        arguments:
+            - '@raw_search.mapping.loader'
+
+    raw_search.mapping.loader:
+        alias: raw_search.mapping.loader.chain
+
+    raw_search.mapping.loader.chain:
+        class: Raw\Search\Mapping\Loader\ChainLoader
+        arguments:
+            - ['@raw_search.mapping.loader.annotation']
+
+    raw_search.mapping.loader.annotation:
+        class: Raw\Search\Mapping\Loader\AnnotationLoader
+
+    raw_search.registry:
+        class: Raw\Search\Registry
+        arguments:
+            - ''
+            - ''
+            - '@raw_search.class_metadata_factory'
+
+
+
+    app.search.populator.news:
+        class: AppBundle\Search\Populator\NewsPopulator
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    raw_search.populator.test:
+        class: Raw\Search\Populator\ChainPopulator
+        arguments:
+            - ['@app.search.populator.news']

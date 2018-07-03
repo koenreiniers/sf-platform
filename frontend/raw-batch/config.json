@@ -1,0 +1,14 @@
+{
+  "browserify": {
+    "base_path": "./raw-batch/",
+    "alias": {
+      "raw-batch": "src/raw-batch.js"
+    },
+    "src": [
+      "autoload.js"
+    ]
+  },
+  "templates": {
+    "batch/job-execution": "./raw-batch/templates/components/job-execution.html"
+  }
+}

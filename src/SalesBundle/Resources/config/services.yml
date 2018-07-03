@@ -1,0 +1,12 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+
+
+    sales.statistics.order:
+        class: SalesBundle\Statistics\OrderStatistics
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@app.currency_converter'

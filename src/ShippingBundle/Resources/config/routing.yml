@@ -1,0 +1,3 @@
+shipping.routing.anno:
+    resource: '@ShippingBundle/Controller/'
+    type: annotation

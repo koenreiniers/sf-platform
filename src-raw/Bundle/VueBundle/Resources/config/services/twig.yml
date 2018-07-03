@@ -1,0 +1,11 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    _instanceof:
+        Symfony\Component\DependencyInjection\ContainerAwareInterface:
+            calls:
+                - [setContainer, ['@service_container']]
+
+    Raw\Bundle\VueBundle\Twig\VueExtension: ~

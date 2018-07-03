@@ -1,0 +1,40 @@
+
+ul.submenu {
+
+
+
+  margin-bottom: 20px;
+
+  > li {
+
+    $hoverBackground: rgba(0,0,0,0.1);
+    $activeBackground: $hoverBackground;
+
+    &.header {
+      font-size: 1.4em;
+      color: #fff;
+      padding: 10px 0 10px 0;
+    }
+
+    &.active {
+
+      a {
+        background: $activeBackground;
+      }
+    }
+
+    a {
+
+
+
+      display: block;
+      padding: 10px;
+      &:hover {
+        background: $hoverBackground;
+      }
+
+
+    }
+  }
+
+}

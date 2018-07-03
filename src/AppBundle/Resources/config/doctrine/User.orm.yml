@@ -1,0 +1,24 @@
+AppBundle\Entity\User:
+    type: entity
+    table: app_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields: []
+    manyToMany:
+        groups:
+            targetEntity: Raw\Bundle\UserBundle\Entity\UserGroup
+#            inversedBy: users
+#    manyToOne:
+#        profileImage:
+#            targetEntity: Raw\Bundle\PlatformBundle\Entity\File
+#            cascade: [persist, remove]
+    oneToMany:
+#        gifs:
+#            targetEntity: AppBundle\Entity\WastedGif
+#            mappedBy: user
+        notifications:
+            targetEntity: Raw\Bundle\UserBundle\Entity\Notification
+            mappedBy: owner

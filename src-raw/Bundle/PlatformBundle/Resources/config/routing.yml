@@ -1,0 +1,11 @@
+raw_platform.file.view:
+    path: /uploads/{path}
+    requirements:
+        path: .+
+    defaults:
+        _controller: RawPlatformBundle:File:view
+
+raw_platform.file.preview:
+    path: /files/{id}/preview
+    defaults:
+        _controller: RawPlatformBundle:File:preview

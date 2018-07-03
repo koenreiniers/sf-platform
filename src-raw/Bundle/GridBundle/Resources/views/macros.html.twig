@@ -1,0 +1,64 @@
+{% macro render(name, parameters) %}
+    {% set parameters = parameters == null ? {} : parameters %}
+
+    <div id="testapp">
+
+        <grid @update-item="onUpdateItem" :name="name" :parameters="parameters"></grid>
+
+    </div>
+
+    <script>
+        jQuery(document).ready(function($){
+
+//            Grid.component('compjo', {
+//                template: '<span>Hallo daar</span>'
+//            });
+
+            var selector = '#testapp';
+            var gridName = '{{ name }}';
+            var parameters = {{ parameters | json_encode | raw }};
+            new Vue({
+                el: selector,
+                data: {
+                    name: gridName,
+                    parameters: parameters,
+                },
+                methods: {
+                    onUpdateItem: function(item) {
+                        console.log(item);
+                    }
+                },
+            });
+        });
+    </script>
+
+    <script>
+
+
+
+        jQuery(document).ready(function($){
+
+            return;
+
+            var selector = '[data-grid-app="{{ name }}"]';
+            var gridName = '{{ name }}';
+            var parameters = {{ parameters | json_encode | raw }};
+            new Vue({
+                el: selector,
+                data: {
+                    name: gridName,
+                    parameters: parameters,
+                },
+                methods: {
+                    onUpdateItem: function(item) {
+                        console.log(item);
+                    }
+                },
+            });
+        });
+    </script>
+
+    <span data-grid-app="{{ name }}">
+        <grid @update-item="onUpdateItem" :name="name" :parameters="parameters"></grid>
+    </span>
+{% endmacro %}

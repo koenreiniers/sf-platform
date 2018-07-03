@@ -1,0 +1,35 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+    raw_versioning.manager:
+        class: Raw\Bundle\VersioningBundle\Versioning\VersioningManager
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@raw_versioning.serializer'
+
+    raw_versioning.factory.version:
+        class: Raw\Bundle\VersioningBundle\Versioning\VersionFactory
+        arguments:
+            - '@raw_versioning.serializer'
+            - '@raw_versioning.repository.version'
+            - '@security.token_storage'
+
+    raw_versioning.repository.version:
+        class: Raw\Bundle\VersioningBundle\Repository\VersionRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Raw\Bundle\VersioningBundle\Entity\Version
+
+
+    raw_versioning.serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            - ''
+            - ''
+
+    raw_versioning.encoder.json:
+        class: Symfony\Component\Serializer\Encoder\JsonEncoder
+        tags:
+            - { name: raw_versioning.encoder }

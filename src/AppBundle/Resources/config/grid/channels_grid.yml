@@ -1,0 +1,76 @@
+channels_grid:
+    properties:
+        computed_data:
+            view_url:
+                type: url
+                route: app.channel.view
+                routeParams:
+                    id: :id
+            edit_url:
+                type: url
+                route: crud.channels.edit
+                routeParams:
+                    id: :id
+            delete_url:
+                type: url
+                route: crud.channels.delete
+                routeParams:
+                    id: :id
+        identifier: id
+        className: AppBundle\Entity\Channel
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    o: AppBundle\Entity\Channel
+                select:
+                    - o.id
+                    - o.name
+                    - o.platformName
+    sorters:
+        id:
+            field: o.id
+        name:
+            field: o.name
+        platformName:
+            field: o.platformName
+    columns:
+        id:
+            type: integer
+            label: Identifier
+        name:
+            type: string
+            label: Name
+        platformName:
+            type: string
+            label: Platform
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: o.id
+        name:
+            type: string
+            label: Name
+            field: o.name
+        platformName:
+            type: enum
+            label: Platform
+            field: o.platformName
+            choices:
+                Magento: magento
+                Bol.com: bol
+    actions:
+        view:
+            type: view
+            url: :view_url
+            label: View
+        edit:
+            type: edit
+            url: :edit_url
+            label: Edit
+        delete:
+            type: delete
+            url: :delete_url
+            label: Delete

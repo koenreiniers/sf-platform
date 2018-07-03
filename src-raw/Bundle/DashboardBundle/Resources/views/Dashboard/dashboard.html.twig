@@ -1,0 +1,41 @@
+
+
+<span id="raw-dashboard-{{ dashboard.id }}">
+        <raw-dashboard :dashboard="dashboard"></raw-dashboard>
+    </span>
+<script>
+    jQuery(document).ready(function($){
+
+        var Vue = window.Vue;
+
+
+
+//        var Platform = Vue.extend({
+//        });
+//        Platform.component('testjo', {
+//            template: '<span>testjo</span>',
+//        });
+//        new Platform({
+//            el: '#platform-test',
+//            data: {
+//                message: 'Hello',
+//            },
+//        });
+
+
+
+        new Vue({
+            el: '#raw-dashboard-{{ dashboard.id }}',
+            data: {
+                dashboard: {
+                    id: {{ dashboard.id }},
+                    name: '{{ dashboard.name }}',
+                    dateRange: {
+                        start: null,
+                        end: null,
+                    },
+                },
+            },
+        });
+    });
+</script>

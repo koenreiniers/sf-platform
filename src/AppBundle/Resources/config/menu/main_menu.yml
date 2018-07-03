@@ -1,0 +1,84 @@
+main_menu:
+    children:
+        dashboard:
+            label: Dashboard
+            route: homepage
+            extras:
+                icon: dashboard
+        admin:
+            label: Admins
+            route: raw_admin.default.index
+            extras:
+                icon: dashboard
+        sales:
+            label: Sales
+            extras:
+                icon: dollar
+            children:
+                orders:
+                    children:
+                        orders:
+                            route: sales.order.index
+        catalog:
+            label: Catalog
+            extras:
+                 icon: product-hunt
+            children:
+                products:
+                    label: Products
+                    children:
+                        list:
+                            route: catalog.product.index
+                            label: All products
+        crm:
+            label: Crm
+            extras:
+                icon: user
+            children:
+                customers:
+                    label: Customers
+                    children:
+                        list:
+                            route: crud.customers.list
+                            label: All customers
+        system:
+            label: System
+            extras:
+                icon: cogs
+                large: true
+            children:
+                users:
+                    label: User management
+                    children:
+                        users:
+                            label: Users
+                            route: crud.users.list
+                        user_groups:
+                            label: User groups
+                            route: crud.user-groups.list
+                        permissions:
+                            label: Permissions
+                            uri: '#'
+                channels:
+                    label: Channels
+                    extras:
+                        icon: connectdevelop
+                    children:
+                        list:
+                            route: crud.channels.list
+                            label: All channels
+                        create:
+                            route: crud.channels.create
+                            label: Create channel
+                batch_jobs:
+                    label: Batch jobs
+                    children:
+                        list:
+                            label: All batch jobs
+                            route: crud.job-instances.list
+                web_services:
+                    label: Web services
+                    children:
+                        api_clients:
+                            label: All clients
+                            route: crud.api-clients.list

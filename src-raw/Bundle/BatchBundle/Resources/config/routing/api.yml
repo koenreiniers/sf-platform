@@ -1,0 +1,6 @@
+raw_batch.api.job_execution.view:
+    path: /job-executions/{id}
+    defaults:
+        _controller: RawBatchBundle:JobExecution:view
+    options:
+        expose: true

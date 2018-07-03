@@ -1,0 +1,51 @@
+
+<div>
+
+    <span v-show="refreshing">
+        <i class="fa fa-refresh fa-spin"></i>
+    </span>
+
+    <div class="box box-default">
+        <div class="box-header">
+            <h3 class="box-title">Steps</h3>
+        </div>
+        <div class="box-body">
+            <table class="table">
+                <tr>
+                    <th>Step</th>
+                    <th>Summary</th>
+                    <th>Status</th>
+                    <th>Started at</th>
+                    <th>Completed at</th>
+                    <th>Warnings</th>
+                </tr>
+                <tr v-for="stepExecution in jobExecution.stepExecutions" >
+                    <td>{{ stepExecution.stepName }}</td>
+                    <td>
+                        <div class="well well-sm">
+                            <table>
+                                <tr v-for="value, key in stepExecution.summary">
+                                    <th>{{ key }}</th>
+                                    <td>{{ value }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </td>
+                    <td>{{ stepExecution.status }}</td>
+                    <td>{{ stepExecution.startedAt }}</td>
+                    <td>{{ stepExecution.completedAt }}</td>
+                    <td>
+                        <div v-for="warning in stepExecution.warnings" class="alert alert-warning">
+                            <strong>{{ warning.message }}</strong><br/>
+                            <div class="well well-sm">
+                                {{ warning.item }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+.

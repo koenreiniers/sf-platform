@@ -1,0 +1,35 @@
+services:
+
+    raw_api.oauth2.grant_registry:
+        class: Raw\Component\OAuth2\Grant\GrantRegistry
+        arguments:
+            - ''
+
+    raw_api.oauth2.grant_provider:
+        class: Raw\Component\OAuth2\Grant\GrantProvider
+        arguments:
+            - '@raw_api.oauth2.grant_registry'
+
+    # Grant types
+
+    raw_api.oauth2.grant_type.password:
+        class: Raw\Component\OAuth2\Grant\Type\PasswordGrantType
+        arguments:
+            - '@fos_user.user_provider.username'
+            - '@security.encoder_factory'
+        tags:
+            - { name: oauth2.grant_type }
+
+    raw_api.oauth2.grant_type.client_credentials:
+        class: Raw\Component\OAuth2\Grant\Type\ClientCredentialsGrantType
+        arguments:
+            - '@raw_api.repository.client'
+        tags:
+            - { name: oauth2.grant_type }
+
+    raw_api.oauth2.grant_type.refresh_token:
+        class: Raw\Component\OAuth2\Grant\Type\RefreshTokenGrantType
+        arguments:
+            - '@raw_api.repository.token'
+        tags:
+            - { name: oauth2.grant_type }

@@ -1,0 +1,7 @@
+parameters:
+    raw_platform.uploads_directory: '%kernel.project_dir%/var/uploads'
+
+imports:
+    - { resource: services/* }
+
+services:

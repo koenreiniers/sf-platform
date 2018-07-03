@@ -1,0 +1,22 @@
+Raw\Bundle\DashboardBundle\Entity\Dashboard:
+    type: entity
+    table: raw_dashboard_dashboard
+    repositoryClass: Raw\Bundle\DashboardBundle\Repository\DashboardRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        default:
+            type: boolean
+            column: "`default`"
+    manyToOne:
+        owner:
+            targetEntity: Raw\Bundle\UserBundle\Entity\User
+    oneToMany:
+        widgets:
+            targetEntity: Raw\Bundle\DashboardBundle\Entity\Widget
+            mappedBy: dashboard

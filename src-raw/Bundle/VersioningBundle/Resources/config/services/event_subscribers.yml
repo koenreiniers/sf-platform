@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    _instanceof:
+        Symfony\Component\DependencyInjection\ContainerAwareInterface:
+            calls:
+                - [setContainer, ['@service_container']]
+        Doctrine\Common\EventSubscriber:
+            tags:
+                - { name: doctrine.event_subscriber }
+
+    Raw\Bundle\VersioningBundle\EventSubscriber\VersionableSubscriber: ~
+
+    Raw\Bundle\VersioningBundle\EventSubscriber\AdminSaveSubscriber: ~

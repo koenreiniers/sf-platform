@@ -1,0 +1,10 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    raw_api.event_subscriber.format:
+        class: Raw\Bundle\ApiBundle\EventSubscriber\FormatSubscriber
+        arguments:
+            - '@serializer'
+            - '@event_dispatcher'

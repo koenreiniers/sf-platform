@@ -1,0 +1,26 @@
+services:
+
+    raw_user.admin.user:
+        class: Raw\Bundle\UserBundle\Admin\UserAdmin
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '%raw_user.user_class%'
+        tags:
+            - { name: raw.admin, alias: users }
+
+    raw_user.admin.user_groups:
+        class: Raw\Bundle\UserBundle\Admin\UserGroupAdmin
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: raw.admin, alias: user-groups }
+
+    raw_user.admin.base:
+        class: Raw\Component\Admin\BaseAdmin
+        tags:
+            - { name: raw.admin }
+
+    raw_user.admin.simple:
+        class: Raw\Component\Admin\SimpleAdmin
+        tags:
+            - { name: raw.admin }

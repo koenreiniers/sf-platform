@@ -1,0 +1,5 @@
+{% for name, path in vueApp.templatePaths %}
+    <script type="text/x-template" data-template-name="{{ name }}">
+        {{ source(path) }}
+    </script>
+{% endfor %}

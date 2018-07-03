@@ -1,0 +1,45 @@
+ul.popout-menu {
+
+
+  $popoutMenuPadding: 25px;
+  $popoutMenuWidth: $popoutItemWidth + $popoutMenuPadding;
+
+  position: absolute;
+  left: $sidebarWidth;
+  background: $popoutBackground;
+  width: $popoutMenuWidth;
+  top: 0;
+  padding: $popoutMenuPadding;
+  display: none;
+  min-height: 75%;
+
+  &.large {
+    width: $popoutMenuWidth * 2 + $popoutMenuPadding * 4;
+    > li {
+      display: inline-block;
+      width: $popoutMenuWidth;
+      vertical-align: top;
+    }
+
+    > li:nth-child(even) {
+      margin-right: $popoutMenuPadding;
+    }
+  }
+
+
+
+  > li.header {
+    font-size: 1.8em;
+    color: #fff;
+    margin-bottom: 20px;
+    width: 100%;
+    display: block;
+  }
+
+  > li > a {
+    font-size: 1.4em;
+    color: #fff;
+    display: block;
+    padding: 10px 0 10px 0;
+  }
+}

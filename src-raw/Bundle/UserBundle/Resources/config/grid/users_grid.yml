@@ -1,0 +1,97 @@
+users_grid:
+    properties:
+        computed_data:
+            view_url:
+                type: url
+                route: crud.users.view
+                routeParams:
+                    id: :id
+            edit_url:
+                type: url
+                route: crud.users.edit
+                routeParams:
+                    id: :id
+            delete_url:
+                type: url
+                route: raw_user.api.user.delete
+                routeParams:
+                    id: :id
+        identifier: id
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    user: Raw\Bundle\UserBundle\Entity\User
+                select:
+                    - user.id
+                    - user.username
+                    - user.email
+                    - user.enabled
+    sorters:
+        id:
+            field: user.id
+        username:
+            field: user.username
+        email:
+            field: user.email
+        enabled:
+            field: user.enabled
+    columns:
+        id:
+            type: integer
+            label: Identifier
+        username:
+            label: Username
+        email:
+            label: Email
+        enabled:
+            type: boolean
+            label: Enabled
+            formatter: enabled
+    actions:
+        view:
+            type: view
+            url: :view_url
+            label: View
+#        edit:
+#            type: edit
+#            url: :edit_url
+#            label: Edit
+        delete:
+            type: delete
+            url: :delete_url
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: user.id
+        username:
+            type: string
+            label: Username
+            field: user.username
+        email:
+            type: enum
+            label: Email
+            field: user.email
+            choices:
+                'Yes': 'yes'
+                'Also yes': 'yes'
+                'No': 'no'
+        enabled:
+            type: enum
+            label: Enabled
+            field: user.enabled
+            choices:
+                'Yes': '1'
+                'No': '0'
+    mass_actions:
+        delete:
+            type: batch_job
+            label: Delete
+            options:
+                job_instance: grid_mass_delete
+                job_parameters:
+                    from: Raw\Bundle\UserBundle\Entity\User
+                    ids: :ids
+                background: false

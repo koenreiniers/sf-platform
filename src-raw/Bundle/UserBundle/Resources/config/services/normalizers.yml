@@ -1,0 +1,14 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    raw_user.normalizer.user:
+        class: Raw\Bundle\UserBundle\Normalizer\UserNormalizer
+        tags:
+            - { name: raw_versioning.normalizer }
+
+    raw_user.normalizer.notification:
+        class: Raw\Bundle\UserBundle\Normalizer\NotificationNormalizer
+        tags:
+            - { name: raw_versioning.normalizer }

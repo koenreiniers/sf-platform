@@ -1,0 +1,15 @@
+<h2>Stores</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    {% for store in channel.stores %}
+        <tr>
+            <td>{{ store.id }}(ext:{{ store.externalId }})</td>
+            <td>{{ store.name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+

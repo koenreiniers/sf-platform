@@ -1,0 +1,12 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    _instanceof:
+        Symfony\Component\Serializer\Normalizer\NormalizerInterface:
+            tags:
+                - { name: serializer.normalizer }
+
+    raw_dashboard.normalizer.dashboard:
+        class: Raw\Bundle\DashboardBundle\Normalizer\DashboardNormalizer

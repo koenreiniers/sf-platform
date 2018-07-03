@@ -1,0 +1,90 @@
+
+
+<div class="box box-default">
+    <div class="box-header">
+        <h3 class="box-title">Addresses</h3>
+    </div>
+    <div class="box-body">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+            </tr>
+            {% for address in customer.addresses %}
+                <tr>
+                    <td>{{ address.fullName }}</td>
+                    <td>{{ address.city }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="box box-default">
+    <div class="box-header">
+        <h3 class="box-title">Recently bought</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            {% for item in recentlyBoughtItems %}
+                <div class="col-md-4">
+                    <h4>{{ item.qty | qty_format }} x {{ item.name }}</h4>
+                    <p>
+                        <span class="label label-default">
+                            {{ item.orderDate | date_format }}
+                        </span>
+
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="box box-default">
+    <div class="box-header">
+        <h3 class="box-title">Most popular</h3>
+    </div>
+    <div class="box-body">
+        <table class="table">
+            <tr>
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Qty</th>
+            </tr>
+            {% for item in mostBoughtItems %}
+                <tr>
+                    <td>{{ item.sku }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.qty | qty_format }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="box box-default">
+    <div class="box-header">
+        <h3 class="box-title">Latest orders</h3>
+    </div>
+    <div class="box-body">
+        <table class="table">
+            <tr>
+                <th>Order #</th>
+                <th>Billed to</th>
+                <th>Shipped to</th>
+                <th>Order total</th>
+                <th>Bought from</th>
+            </tr>
+            {% for order in customer.orders %}
+                <tr>
+                    <td>{{ order.orderNumber }}</td>
+                    <td>{{ order.billingAddress.fullName }}</td>
+                    <td>{{ order.shippingAddress.fullName }}</td>
+                    <td>{{ order.grandTotal | money_format(order.store.currencyCode) }}</td>
+                    <td>{{ order.store.name }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

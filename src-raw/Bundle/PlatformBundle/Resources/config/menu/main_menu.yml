@@ -1,0 +1,4 @@
+main_menu:
+    label: 'System'
+    uri: '#'
+    children: []

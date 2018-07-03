@@ -1,0 +1,34 @@
+{{ form_start(form) }}
+
+{% set tab_parameters %}
+    {{ form_widget(form.parameters) }}
+{% endset %}
+
+{% set tab_general %}
+    {{ form_rest(form) }}
+{% endset %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">General</h3>
+    </div>
+    <div class="panel-body">
+        {{ tab_general }}
+    </div>
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Parameters</h3>
+    </div>
+    <div class="panel-body">
+        {{ tab_parameters }}
+    </div>
+    <div class="panel-footer">
+        <button>Submit</button>
+    </div>
+</div>
+
+
+
+
+
+{{ form_end(form) }}

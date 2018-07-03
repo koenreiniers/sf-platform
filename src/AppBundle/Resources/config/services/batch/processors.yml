@@ -1,0 +1,11 @@
+services:
+
+    app.batch.processor.sync_channel:
+        class: AppBundle\Batch\Processor\SyncChannelProcessor
+        arguments:
+            - '@app.platform_helper'
+
+    app.batch.reader.channel:
+        class: AppBundle\Batch\Reader\ChannelReader
+        arguments:
+            - '@doctrine.orm.default_entity_manager'

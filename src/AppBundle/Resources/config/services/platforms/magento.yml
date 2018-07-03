@@ -1,0 +1,26 @@
+services:
+
+    app.batch.reader.channel_product:
+        class: AppBundle\Batch\Reader\ChannelProductReader
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    app.batch.processor.channel_product:
+        class: AppBundle\Batch\Processor\ChannelProductProcessor
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+
+    app.batch.step.import_channel_products:
+        class: Raw\Component\Batch\Step\ItemStep
+        arguments:
+            - 'Import channel products'
+            - '@app.batch.reader.channel_product'
+            - '@app.batch.processor.channel_product'
+            - '@raw_batch.writer.doctrine'
+
+    app.batch.job.import_channel_products:
+        class: AppBundle\Batch\Job\ChannelSpecificJob
+        arguments:
+            - ['@app.batch.step.import_channel_products']
+        tags:
+            - { name: raw_batch.job, alias: channel_import_products }

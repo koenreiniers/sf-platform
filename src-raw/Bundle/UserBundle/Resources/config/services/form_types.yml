@@ -1,0 +1,7 @@
+services:
+
+    Raw\Bundle\UserBundle\Form\Type\UserType:
+        arguments:
+            - '%raw_user.user_class%'
+        tags:
+            - { name: form.type }

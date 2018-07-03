@@ -1,0 +1,19 @@
+{% extends raw_admin_base_template %}
+
+{% block breadcrumbs %}
+    {{ knp_menu_render(breadcrumbs, {template: 'RawPlatformBundle:Menu:breadcrumbs.html.twig'}) }}
+{% endblock %}
+
+{% block content_title %}
+    {{ layout.title }}
+{% endblock %}
+
+{% block actions %}
+    {% for action in actions %}
+        {% include 'RawAdminBundle:Layout:action.html.twig' with {node: action} %}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    {{ layout_render(layout) }}
+{% endblock %}

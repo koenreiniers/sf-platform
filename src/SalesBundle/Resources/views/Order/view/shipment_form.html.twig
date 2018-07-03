@@ -1,0 +1,28 @@
+{% form_theme newShipmentForm 'SalesBundle:Order/partial:form_theme.html.twig' %}
+
+<h2>Create shipment</h2>
+{{ form_start(newShipmentForm) }}
+
+<table class="table">
+    <tr>
+        <th>SKU</th>
+        <th>Name</th>
+        <th>Qty</th>
+    </tr>
+    {% for shipmentItemForm in newShipmentForm.shipmentItems %}
+        {% set shipmentItem = shipmentItemForm.vars.data %}
+        <tr>
+            <td>{{ shipmentItem.orderItem.sku }}</td>
+            <td>{{ shipmentItem.orderItem.name }}</td>
+            <td>
+                {{ form_widget(shipmentItemForm.qty) }}
+            </td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+{{ form_rest(newShipmentForm) }}
+
+<button>Submit</button>
+{{ form_end(newShipmentForm) }}

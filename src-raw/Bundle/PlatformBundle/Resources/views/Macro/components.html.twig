@@ -1,0 +1,16 @@
+{% macro start(name, context) %}
+    {% set context = context is not empty ? context : {} %}
+    {{ component_start(name, context) }}
+{% endmacro %}
+
+{% macro end(context) %}
+    {% set context = context is not empty ? context : {} %}
+    {{ component_end(context) }}
+{% endmacro %}
+
+{% macro render(name, content, context) %}
+    {% import _self as c %}
+    {{ c.start(name, context) }}
+    {{ content }}
+    {{ c.end(context) }}
+{% endmacro %}

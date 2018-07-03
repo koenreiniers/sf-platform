@@ -1,0 +1,53 @@
+api_clients:
+    properties:
+        computed_data:
+            view_url:
+                type: url
+                route: crud.api-clients.view
+                routeParams:
+                    id: :id
+            edit_url:
+                type: url
+                route: crud.api-clients.edit
+                routeParams:
+                    id: :id
+        identifier: id
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    client: Raw\Bundle\ApiBundle\Entity\Client
+                select:
+                    - client.id
+                    - client.publicId
+                    - client.secret
+    sorters:
+        id:
+            field: client.id
+        publicId:
+            field: client.publicId
+        secret:
+            field: client.secret
+    columns:
+        id:
+            type: integer
+            label: Identifier
+        publicId:
+            type: integer
+        secret:
+            label: Secret
+    actions:
+        view:
+            type: view
+            url: :view_url
+            label: View
+        edit:
+            type: edit
+            url: :edit_url
+            label: Edit
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: client.id

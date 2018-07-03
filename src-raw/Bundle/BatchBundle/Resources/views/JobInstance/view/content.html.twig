@@ -1,0 +1,46 @@
+{% import 'RawGridBundle::macros.html.twig' as grid %}
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">General</h3>
+            </div>
+            <div class="box-body">
+                <dl>
+                    <dt>Code</dt>
+                    <dd>{{ jobInstance.code }}</dd>
+                    <dt>Job name</dt>
+                    <dd>{{ jobInstance.jobName }}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Previous executions</h3>
+            </div>
+            <div class="box-body">
+
+                {{ grid.render('job_executions_grid', {jobInstance: jobInstance.id}) }}
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Cron</h3>
+            </div>
+            <div class="box-body">
+                {% if jobInstance.cronEnabled %}
+                    Expr: {{ jobInstance.cronExpression }}<br/>
+                    Next run at: {{ jobInstance.cronNextRunAt | date('d-m-Y H:i:s') }}
+                {% else %}
+                    <span class="label label-warning">Disabled</span>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>

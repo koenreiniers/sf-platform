@@ -1,0 +1,21 @@
+Raw\Bundle\UserBundle\Entity\User:
+    type: mappedSuperclass
+    fields:
+        firstName:
+            type: string
+            nullable: true
+        lastName:
+            type: string
+            nullable: true
+        createdAt:
+            type: datetime
+            nullable: true
+#    id:
+#        id:
+#            type: integer
+#            generator:
+#                strategy: AUTO
+#    oneToMany:
+#        notifications:
+#            targetEntity: Raw\Bundle\UserBundle\Entity\Notification
+#            mappedBy: owner

@@ -1,0 +1,18 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block page_title %}
+    <h1>
+        {{ customer }}
+    </h1>
+
+{% endblock %}
+
+{% block title %}
+    {{ customer }}
+{% endblock %}
+
+{% block content %}
+
+    {% include 'CrmBundle:Customer/view:content.html.twig' %}
+
+{% endblock %}

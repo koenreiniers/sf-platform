@@ -1,0 +1,25 @@
+.panel {
+  border-top-width: 1px;
+  box-shadow: $panelShadow;
+
+  .panel-heading {
+    background: none;
+    border-bottom-color: #f0f0f0;
+    color: #333;
+    position: relative;
+
+    .panel-title {
+      display: inline-block;
+      font-size: 18px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .panel-tools {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+    }
+  }
+
+}

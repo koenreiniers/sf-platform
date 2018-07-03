@@ -1,0 +1,42 @@
+CrmBundle\Entity\Customer:
+    type: entity
+    table: crm_customer
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: string
+        externalCreatedAt:
+            type: datetime
+        externalUpdatedAt:
+            type: datetime
+        namePrefix:
+            type: string
+            nullable: true
+        nameSuffix:
+            type: string
+            nullable: true
+        firstName:
+            type: string
+        middleName:
+            type: string
+            nullable: true
+        lastName:
+            type: string
+        email:
+            type: string
+    manyToOne:
+        channel:
+            targetEntity: AppBundle\Entity\Channel
+            inversedBy: customers
+    oneToMany:
+        orders:
+            targetEntity: SalesBundle\Entity\Order
+            mappedBy: customer
+        addresses:
+            targetEntity: CrmBundle\Entity\Address
+            mappedBy: customer
+            cascade: [persist, remove]

@@ -1,0 +1,27 @@
+services:
+
+    raw_dashboard.statistics.manager:
+        class: Raw\Component\Statistics\StatisticManager
+        arguments:
+            - '@raw_dashboard.statistics.loader'
+
+    raw_dashboard.statistics.loader:
+        alias: raw_dashboard.statistics.loader.chain
+
+    raw_dashboard.statistics.loader.chain:
+        class: Raw\Component\Statistics\Loader\ChainLoader
+        arguments:
+            - ''
+
+    raw_dashboard.dataset.manager:
+        class: Raw\Component\Statistics\StatisticManager
+        arguments:
+            - '@raw_dashboard.dataset.loader'
+
+    raw_dashboard.dataset.loader:
+        alias: raw_dashboard.dataset.loader.chain
+
+    raw_dashboard.dataset.loader.chain:
+        class: Raw\Component\Statistics\Loader\ChainLoader
+        arguments:
+            - ''

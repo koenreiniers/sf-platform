@@ -1,0 +1,7 @@
+services:
+
+    shipping.carrier.adapter.postnl:
+        class: ShippingBundle\Carrier\Adapter\PostnlAdapter
+
+    shipping.carrier.adapter.custom:
+        class: ShippingBundle\Carrier\Adapter\CustomAdapter

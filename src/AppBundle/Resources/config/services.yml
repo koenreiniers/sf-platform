@@ -1,0 +1,28 @@
+imports:
+    - { resource: services/*.yml }
+    - { resource: services/batch/*.yml }
+    - { resource: services/platforms/*.yml }
+
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    app.currency_registry:
+        class: AppBundle\Currency\CurrencyRegistry
+        arguments:
+            - '@app.global_settings'
+            - '@doctrine.orm.default_entity_manager'
+
+    app.currency_converter:
+        class: AppBundle\Currency\CurrencyConverter
+        arguments:
+            - '@app.currency_registry'
+
+    app.global_settings:
+        class: AppBundle\Settings\Settings
+
+    app.mage_rest_factory:
+        class: AppBundle\Mage\MageRestFactory
+        arguments:
+            - '@router'

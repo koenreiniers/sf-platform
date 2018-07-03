@@ -1,0 +1,24 @@
+AppBundle\Entity\Store:
+    type: entity
+    table: app_store
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+        externalId:
+            type: string
+        currencyCode:
+            type: string
+    oneToMany:
+        orders:
+            targetEntity: SalesBundle\Entity\Order
+            mappedBy: store
+            cascade: [persist, remove]
+    manyToOne:
+        channel:
+            targetEntity: AppBundle\Entity\Channel
+            inversedBy: stores

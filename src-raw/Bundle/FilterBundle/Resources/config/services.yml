@@ -1,0 +1,17 @@
+services:
+
+    raw_filter.storage:
+        class: Raw\Filter\Storage\SessionStorage
+        arguments:
+            - '@session'
+
+    raw_filter.factory:
+        class: Raw\Filter\FiltererFactory
+        arguments:
+            - '@raw_filter.registry'
+            - '@raw_filter.storage'
+
+    raw_filter.registry:
+        class: Raw\Filter\FilterRegistry
+        arguments:
+            - []

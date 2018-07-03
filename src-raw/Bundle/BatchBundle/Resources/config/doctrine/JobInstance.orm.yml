@@ -1,0 +1,30 @@
+Raw\Bundle\BatchBundle\Entity\JobInstance:
+    type: entity
+    table: raw_batch_job_instance
+    repositoryClass: Raw\Bundle\BatchBundle\Repository\JobInstanceRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            unique: true
+        jobName:
+            type: string
+        parameters:
+            type: array
+        cronExpression:
+            type: string
+            nullable: true
+        cronEnabled:
+            type: boolean
+        cronNextRunAt:
+            type: datetime
+            nullable: true
+    oneToMany:
+        jobExecutions:
+            targetEntity: Raw\Bundle\BatchBundle\Entity\JobExecution
+            mappedBy: jobInstance
+            cascade: [persist, remove]

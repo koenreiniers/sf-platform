@@ -1,0 +1,35 @@
+{% block box_start %}
+    {% set type = type is defined ? type : 'default' %}
+    <div class="box box-{{ type }}">
+{% endblock %}
+{% block box_end %}
+    </div>
+{% endblock %}
+
+{% block header_start %}
+    <div class="box-header">
+{% endblock %}
+{% block header_end %}
+    </div>
+{% endblock %}
+
+{% block title_start %}
+    <h3 class="box-title">
+{% endblock %}
+{% block title_end %}
+    </h3>
+{% endblock %}
+
+{% block body_start %}
+    <div class="box-body">
+{% endblock %}
+{% block body_end %}
+    </div>
+{% endblock %}
+
+{% block footer_start %}
+    <div class="box-footer">
+{% endblock %}
+{% block footer_end %}
+    </div>
+{% endblock %}

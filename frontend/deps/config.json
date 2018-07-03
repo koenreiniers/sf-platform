@@ -1,0 +1,11 @@
+{
+  "base_path": "./deps/",
+  "src": ["src/deps.js"],
+  "alias": {
+    "vue": "vendor/vue.js",
+    "jquery-ui": "vendor/jquery-ui.js",
+    "bootstrap-daterangepicker": "vendor/bootstrap-daterangepicker.js",
+    "gridstack": "vendor/gridstack/gridstack.js",
+    "gridstack.jquery-ui": "vendor/gridstack/gridstack.jquery-ui.js"
+  }
+}

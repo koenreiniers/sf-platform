@@ -1,0 +1,47 @@
+job_executions_grid:
+    properties:
+        identifier: id
+        className: Raw\Bundle\BatchBundle\Entity\JobExecution
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    jobExecution: Raw\Bundle\BatchBundle\Entity\JobExecution
+                select:
+                    - jobExecution.id
+                    - jobExecution.status
+                where:
+                    - jobExecution.jobInstance = :jobInstance
+        bind_parameters:
+            - jobInstance
+    columns:
+        id:
+            type: integer
+            label: Identifier
+            property: id
+        status:
+            type: string
+            label: Status
+            property: status
+    sorters:
+        id:
+            field: jobExecution.id
+        status:
+            field: jobExecution.status
+    filters:
+        status:
+            type: enum
+            label: Status
+            field: jobExecution.status
+            choices:
+                'Completed': 'completed'
+                'Running': 'running'
+                'Failed': 'failed'
+    actions:
+        view:
+            type: navigate
+            route: raw_batch.job_execution.view
+            routeParams:
+                id: id
+    mass_actions: []

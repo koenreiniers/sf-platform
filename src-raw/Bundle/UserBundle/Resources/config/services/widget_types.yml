@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    raw_user.widget.type.notifications:
+        class: Raw\Bundle\UserBundle\Widget\Type\NotificationsWidgetType
+        tags:
+            - { name: widget.type, alias: notifications }

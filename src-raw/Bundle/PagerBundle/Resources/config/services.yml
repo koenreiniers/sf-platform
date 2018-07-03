@@ -1,0 +1,44 @@
+imports:
+    - { resource: extensions.yml }
+
+services:
+
+    raw_pager.factory:
+        class: Raw\Pager\PagerFactory
+        arguments:
+            - ''
+        calls:
+            - [setContainer, ['@service_container']]
+
+    raw_pager.renderer:
+        class: Raw\Pager\PagerRenderer
+        arguments:
+            - '@raw_pager.renderer.engine'
+
+    raw_pager.renderer.engine:
+        alias: raw_pager.renderer.engine.twig
+
+    raw_pager.renderer.engine.twig:
+        class: Raw\Pager\Renderer\Engine\TwigEngine
+
+    raw_pager.twig.extension.pager:
+        class: Raw\Pager\Twig\PagerExtension
+        arguments:
+            - '@raw_pager.renderer'
+        tags:
+            - { name: twig.extension }
+
+    raw_pager.event_subscriber.pager_form:
+        class: Raw\Pager\Extension\Form\PagerFormSubscriber
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    raw_pager.form.type.pager:
+        class: Raw\Pager\Extension\Form\Type\PagerType
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: form.type }
+

@@ -1,0 +1,8 @@
+services:
+
+    sales.form.type.shipment_item:
+        class: SalesBundle\Form\Type\ShipmentItemType
+        arguments:
+            - '@app.platform_helper'
+        tags:
+            - { name: form.type }

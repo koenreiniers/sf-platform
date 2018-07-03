@@ -1,0 +1,11 @@
+imports:
+    - { resource: hydrators.yml }
+
+services:
+
+    raw_search.event_subscriber.doctrine_update_indexes:
+        class: Raw\Bundle\SearchBundle\EventListener\DoctrineUpdateIndexesSubscriber
+        tags:
+            - { name: doctrine.event_subscriber }
+        calls:
+            - [setContainer, ['@service_container']]

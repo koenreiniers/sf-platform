@@ -1,0 +1,33 @@
+{% import 'raw_pager_macros.html.twig' as macros %}
+
+{{ macros.page_button(pager, firstPage, {
+    icon: 'step-backward',
+    activeClass: 'btn-default disabled'
+}) }}
+{{ macros.page_button(pager, previousPage, {
+    icon: 'chevron-left',
+    activeClass: 'btn-default disabled'
+}) }}
+
+{% if 2 not in buttonsRange %}
+    {{ macros.button({
+        label: '...',
+        class: 'btn btn-default disabled',
+    }) }}
+{% endif %}
+
+{% for p in buttonsRange %}
+    {{ macros.page_button(pager, p, {
+        label: p,
+        activeClass: 'btn-primary'
+    }) }}
+{% endfor %}
+
+{{ macros.page_button(pager, nextPage, {
+    icon: 'chevron-right',
+    activeClass: 'btn-default disabled'
+}) }}
+{{ macros.page_button(pager, lastPage, {
+    icon: 'step-forward',
+    activeClass: 'btn-default disabled'
+}) }}

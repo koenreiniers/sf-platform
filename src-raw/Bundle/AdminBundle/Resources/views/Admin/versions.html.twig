@@ -1,0 +1,61 @@
+<div class="box box-default">
+    <div class="box-body">
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>#</th>
+                <th>Author</th>
+                <th>Context</th>
+                <th>Modified</th>
+                <th>Actions</th>
+            </tr>
+
+            {% set versions = versions | reverse %}
+
+            {% for version in versions %}
+                <tr>
+                    <td>
+                        <a class="btn btn-default" data-toggle="collapse" data-target="#version-{{ version.id }}">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+
+                    </td>
+
+                    <td>
+                        {{ version.number }}
+                    </td>
+                    <td>
+                        {{ version.author }}
+                    </td>
+                    <td>{{ version.context }}</td>
+                    <td>
+                        {% set properties = [] %}
+                        {% for property, values in version.changeSet %}
+                            {% set properties = properties|merge([property | humanize | lower]) %}
+                        {% endfor %}
+                        {{ properties | join(', ') }}<br/>
+
+
+
+                    </td>
+                    <td>
+                        <a href="{{ path('raw_versioning.version.restore', {id: version.id}) }}">Restore</a>
+                    </td>
+                </tr>
+                <tr id="version-{{ version.id }}" class="collapse">
+                    <td colspan="4">
+                        <div>
+                            {% for property, values in version.changeSet %}
+                                <div>
+                                    <strong>{{ property | humanize }}</strong><br/>
+                                    Old: {{ values[0] | json_encode }}<br/>
+                                    New: {{ values[1] | json_encode }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

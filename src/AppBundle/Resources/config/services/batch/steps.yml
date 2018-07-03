@@ -1,0 +1,16 @@
+services:
+
+
+
+    app.batch.step.process_shipment_tracks:
+        class: AppBundle\Batch\Step\ProcessShipmentTracksStep
+        arguments:
+            - '@shipping'
+
+    app.batch.step.complete_sync:
+        class: Raw\Component\Batch\Step\ItemStep
+        arguments:
+            - 'Complete sync'
+            - '@app.batch.reader.channel'
+            - '@app.batch.processor.sync_channel'
+            - '@raw_batch.writer.doctrine'

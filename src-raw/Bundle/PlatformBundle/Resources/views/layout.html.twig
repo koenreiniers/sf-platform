@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Raw Platform{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    {% block stylesheets %}
+
+        {% include 'RawPlatformBundle:Theme:stylesheets.html.twig' %}
+
+        {% include 'RawGridBundle::stylesheets.html.twig' %}
+
+        <link rel="stylesheet" href="{{ asset('bundles/rawplatform/css/style.css') }}">
+
+        <style>
+            .nav-tabs .tab-error-marker {
+                display: none;
+            }
+        </style>
+
+    {% endblock %}
+
+
+    <!-- jQuery -->
+    <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+
+    <!-- JS Routing -->
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+
+    <!--[if lt IE 9]>
+    <script src="{{ asset('assets/vendor/html5shiv/dist/html5shiv.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/respond/dest/respond.min.js') }}"></script>
+    <![endif]-->
+
+    <!-- dependencies -->
+    <script src="{{ asset('assets/vendor/underscore/underscore-min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/handlebars/handlebars.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/vue/dist/vue.min.js') }}"></script>
+
+
+
+
+
+    {% set normalized_flashes = [] %}
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            {% set normalized_flashes = normalized_flashes | merge([{level: label, message: flash}]) %}
+        {% endfor %}
+    {% endfor %}
+    <script>
+        Raw.config({
+            base_path: '{{ asset('') }}',
+            templates: {
+                'notification/list': 'bundles/rawuser/notification/templates/list.html',
+                'flash/message': 'bundles/rawplatform/templates/flash_message.html',
+            },
+        });
+        Raw.param('api_token', '{{ get_api_token() }}');
+        Raw.param('flash_messages', {{ normalized_flashes | json_encode | raw }})
+    </script>
+
+    {% include 'RawVueBundle:Placeholder:form_components.html.twig' %}
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+            Logo
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top">
+
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <!-- Navbar right -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Notifications -->
+                    <li class="dropdown notifications-menu" id="notifications-menu"></li>
+
+                    <!-- User menu -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{ path('raw_platform.file.preview', {id: app.user.profileImage.id}) }}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{ app.user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                {# {{ asset('uploads/dist/img/user2-160x160.jpg') }} #}
+                                <img src="{{ path('raw_platform.file.preview', {id: app.user.profileImage.id}) }}" class="img-circle" alt="User Image">
+                                <p>
+                                    {{ app.user.username }}
+                                    <small>Member since {{ app.user.createdAt | date('d-m-Y H:i:s') }}</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="{{ path('crud.users.view', {id: app.user.id}) }}" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{ path('raw_user.security.logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Left sidebar -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+
+            {{ raw_menu_render({
+                children: {
+                    dashboard: {
+                        label: 'Dashboard',
+                        route: 'raw_dashboard.dashboard.default',
+                        extras: {
+                            icon: 'dashboard',
+                        },
+                    },
+                }
+            }, {
+                template: 'RawPlatformBundle:Menu:sidebar.html.twig',
+                currentClass: 'active',
+                ancestorClass: 'active'
+            }
+            ) }}
+
+            {{ knp_menu_render('main_menu', {
+                template: 'RawPlatformBundle:Menu:sidebar.html.twig',
+                currentClass: 'active',
+                ancestorClass: 'active'
+            }) }}
+        </section>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+
+
+    <div class="content-wrapper">
+
+
+        <section class="flash-messages" style="padding: 15px; display: none;" id="raw-flash-messages"></section>
+
+        {% block content_wrapper %}
+
+            <section class="content-header">
+                <h1>
+                    {% block content_title %}
+                        Page title
+                        <small>Subtitle</small>
+                    {% endblock %}
+                    <br/>
+                    <div class="content-header-actions text-right">
+                        {{ block('actions') }}
+                    </div>
+                </h1>
+                {% block breadcrumbs %}
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Lorem</a></li>
+                        <li class="active">Ipsum</li>
+                    </ol>
+                {% endblock %}
+            </section>
+            <section class="content">
+
+                {% block content %}
+                    <em>No content defined</em>
+                {% endblock %}
+            </section>
+
+        {% endblock %}
+
+    </div>
+
+
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <strong>Copyright &copy; {{ "now"|date("Y") }} <a href="#" target="_blank">Raw Platform</a>.</strong> All rights reserved.
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+
+
+{% block javascripts %}
+
+
+    <script>
+        jQuery(document).ready(function($){
+
+            var $form = $('form');
+
+            $form.find('button').on('click', function(e){
+
+                $form.find('.tab-error-marker').hide();
+
+                var i = 0;
+                $form.find('input:invalid').each(function(e){
+                    var $tab = $(this).closest('.tab-pane');
+                    var id = $tab.attr('id');
+                    var $tabset = $tab.closest('.nav-tabs-custom');
+                    var $anchor = $tabset.find('a[href="#'+id+'"]');
+                    if(i === 0) {
+                        $anchor.tab('show');
+                    }
+                    $anchor.find('.tab-error-marker').show();
+                    i++;
+                });
+
+            });
+
+        });
+    </script>
+
+    {% include 'RawPlatformBundle:Theme:scripts.html.twig' %}
+
+    <!-- notification -->
+    <script src="{{ asset('bundles/rawuser/notification/notification.js') }}"></script>
+
+    <script src="{{ asset('bundles/rawplatform/extensions/http.js') }}"></script>
+    <script src="{{ asset('bundles/rawplatform/platform/extension/flash.js') }}"></script>
+    <script src="{{ asset('bundles/rawplatform/components/box.js') }}"></script>
+    <script src="{{ asset('bundles/rawplatform/components/chart.js') }}"></script>
+    <script src="{{ asset('bundles/rawplatform/components/advanced-select.js') }}"></script>
+    <script src="{{ asset('bundles/rawplatform/components/date-range-picker.js') }}"></script>
+    <script src="{{ asset('bundles/rawplatform/components/vector-map.js') }}"></script>
+    <script src="{{ asset('bundles/rawplatform/components/modal.js') }}"></script>
+
+    {% include 'RawDashboardBundle::scripts.html.twig' %}
+    {% include 'RawGridBundle::scripts.html.twig' %}
+    {% include 'RawApiBundle::scripts.html.twig' %}
+
+    <script src="{{ asset('bundles/rawuser/widgets/notifications-widget.js') }}"></script>
+
+{% endblock %}
+
+</body>
+</html>

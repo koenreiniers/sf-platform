@@ -1,0 +1,9 @@
+{% import 'raw_pager_macros.html.twig' as macros %}
+
+{% for p in buttonsRange %}
+    {{ macros.page_button(pager, p, {
+        label: p,
+        activeClass: 'btn-primary'
+    }) }}
+{% endfor %}
+

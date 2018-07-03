@@ -1,0 +1,74 @@
+
+<div>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Qty shipped</th>
+            <th>Status</th>
+            <th>Row total</th>
+        </tr>
+        {% for orderItem in order.orderItems %}
+            <tr>
+                <td>{{ orderItem.id }} (ext:{{ orderItem.externalId }})</td>
+                <td>{{ orderItem.sku }}</td>
+                <td>{{ orderItem.name }}</td>
+                <td>{{ orderItem.qtyShipped | qty_format }} of {{ orderItem.qtyOrdered | qty_format }}</td>
+                <td>
+                    {% if orderItem.qtyLeft > 0 %}
+                        <span class="label label-default">{{ orderItem.qtyLeft | qty_format }} unshipped</span>
+                    {% else %}
+                        <span class="label label-success">All shipped</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <span class="pull-right">{{ orderItem.rowTotal | money_format(currency) }}</span>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+        <table class="table">
+            <tr>
+                <td>Subtotal</td>
+                <td>
+                    <span class="pull-right">{{ order.subTotal | money_format(currency) }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Taxes</td>
+                <td>
+                    +
+                    <span class="pull-right">{{ order.taxAmount | money_format(currency) }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>
+                    +
+                    <span class="pull-right">{{ order.shippingAmount | money_format(currency) }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Discounts</td>
+                <td>
+                    -
+                    <span class="pull-right">{{ order.discountAmount | money_format(currency) }}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>Grand total</th>
+                <th>
+                    <span class="pull-right">{{ order.grandTotal | money_format(currency) }}</span>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>

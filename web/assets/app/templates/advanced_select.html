@@ -1,0 +1,32 @@
+<div :style="{'position': open ? 'relative' : null}" v-click-outside="close">
+
+
+
+    <span style="cursor: pointer;" class="form-control" @click="toggle()">
+        <span class="pull-right">
+            <i class="fa fa-chevron-down"></i>
+        </span>
+        <span v-html="activeLabel"></span>
+    </span>
+
+    <div v-show="open" class="box box-default" style="position: absolute; width: 100%;">
+        <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a>
+                        <input class="form-control search-input" type="text" @input="search" v-model="searchTerm">
+                    </a>
+                </li>
+                <li v-for="value, label in filteredChoices">
+                    <a href="javascript:void('')" @click="select(label)" v-html="label">
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+</div>.

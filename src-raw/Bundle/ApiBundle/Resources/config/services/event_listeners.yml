@@ -1,0 +1,10 @@
+services:
+
+    raw_api.event_listener.add_flash_messages:
+        class: Raw\Component\Rest\EventListener\AddFlashMessagesListener
+        tags:
+            - { name: kernel.event_listener, event: raw_rest.response, method: onRestResponse }
+
+    Raw\Component\Rest\EventListener\FormatExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: raw_rest.exception, method: onRestException }

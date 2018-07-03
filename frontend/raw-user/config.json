@@ -1,0 +1,17 @@
+{
+  "browserify": {
+    "base_path": "./raw-user/",
+    "alias": {
+      "raw-user": "src/raw-user.js"
+    },
+    "src": [
+      "src/autoload.js"
+    ]
+  },
+  "templates": {
+    "widgets/notifications": "./raw-user/templates/widgets/notifications-widget.html",
+    "flash_messages": "./raw-user/templates/flash-messages.html",
+    "notifications": "./raw-user/templates/notifications.html"
+  }
+
+}

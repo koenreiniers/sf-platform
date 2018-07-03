@@ -1,0 +1,30 @@
+Raw\Bundle\BatchBundle\Entity\StepExecution:
+    type: entity
+    table: raw_batch_step_execution
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        status:
+            type: string
+        summary:
+            type: array
+        stepName:
+            type: string
+        startedAt:
+            type: datetime
+            nullable: true;
+        completedAt:
+            type: datetime
+            nullable: true
+    oneToMany:
+        warnings:
+            targetEntity: Raw\Bundle\BatchBundle\Entity\Warning
+            mappedBy: stepExecution
+            cascade: [persist, remove]
+    manyToOne:
+        jobExecution:
+            targetEntity: Raw\Bundle\BatchBundle\Entity\JobExecution
+            inversedBy: stepExecutions

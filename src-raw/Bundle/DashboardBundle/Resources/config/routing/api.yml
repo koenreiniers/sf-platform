@@ -1,0 +1,80 @@
+raw_dashboard.api.dashboard.index:
+    path: /dashboards
+    methods: GET
+    defaults:
+        _controller: RawDashboardBundle:Dashboard:index
+    options:
+        expose: true
+
+raw_dashboard.api.dashboard.widgets:
+    path: /dashboards/{id}/widgets
+    methods: GET
+    defaults:
+        _controller: RawDashboardBundle:Dashboard:widgets
+    options:
+        expose: true
+
+raw_dashboard.api.dashboard.view:
+    path: /dashboards/{id}
+    methods: GET
+    defaults:
+        _controller: RawDashboardBundle:Dashboard:view
+    options:
+        expose: true
+
+raw_dashboard.api.dashboard.update:
+    path: /dashboards/{id}
+    methods: PATCH
+    defaults:
+        _controller: RawDashboardBundle:Dashboard:update
+    options:
+        expose: true
+
+raw_dashboard.api.dashboard.create:
+    path: /dashboards
+    methods: POST
+    defaults:
+        _controller: RawDashboardBundle:Dashboard:create
+    options:
+        expose: true
+
+raw_dashboard.api.widget.index:
+    path: /widgets
+    methods: GET
+    defaults:
+        _controller: RawDashboardBundle:Widget:index
+    options:
+        expose: true
+
+raw_dashboard.api.widget.create:
+    path: /widgets
+    methods: POST
+    defaults:
+        _controller: RawDashboardBundle:Widget:create
+    options:
+        expose: true
+
+raw_dashboard.api.widget.update:
+    path: /widgets/{id}
+    methods: PATCH
+    defaults:
+        _controller: RawDashboardBundle:Widget:update
+    options:
+        expose: true
+
+raw_dashboard.api.widget.delete:
+    path: /widgets/{id}
+    methods: DELETE
+    defaults:
+        _controller: RawDashboardBundle:Widget:delete
+    options:
+        expose: true
+
+raw_dashboard.api.widget.view:
+    path: /widgets/{id}
+    methods: GET
+    defaults:
+        _controller: RawDashboardBundle:Widget:view
+    options:
+        expose: true
+

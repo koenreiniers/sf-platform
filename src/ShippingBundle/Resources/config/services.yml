@@ -1,0 +1,15 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+    shipping:
+        class: ShippingBundle\Shipping\Shipping
+        arguments:
+            - '@shipping.carrier_registry'
+            - '@doctrine.orm.default_entity_manager'
+
+    shipping.carrier_registry:
+        class: ShippingBundle\Carrier\CarrierRegistry
+        arguments:
+            - { postnl: '@shipping.carrier.adapter.postnl', custom: '@shipping.carrier.adapter.custom' }

@@ -1,0 +1,31 @@
+{% block action %}
+    {% include 'RawAdminBundle:Layout:action.html.twig' %}
+{% endblock %}
+
+{% block fieldset %}
+    <fieldset>
+        <legend>{{ node.title }}</legend>
+        {% for childNode in node %}
+            {{ layout_node(childNode) }}
+        {% endfor %}
+    </fieldset>
+{% endblock %}
+
+{% block form %}
+    {#{{ form_start(form) }}#}
+    {% for childNode in node %}
+
+        {{ layout_node(childNode) }}
+
+    {% endfor %}
+    {#{{ form_end(form) }}#}
+{% endblock %}
+
+{% block field %}
+    {{ form_row(attribute(form, node.name)) }}
+{% endblock %}
+
+{% block grid %}
+    {% import 'RawGridBundle::macros.html.twig' as dataGrid %}
+    {{ dataGrid.render(node.getAttribute('gridName'), node.getAttribute('gridParameters')) }}
+{% endblock %}

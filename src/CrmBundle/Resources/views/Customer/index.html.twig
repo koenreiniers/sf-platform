@@ -1,0 +1,13 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}
+    Customers
+{% endblock %}
+
+{% block content %}
+
+    {% import 'RawGridBundle::macros.html.twig' as grid %}
+
+    {{ grid.render('customers_grid') }}
+
+{% endblock %}

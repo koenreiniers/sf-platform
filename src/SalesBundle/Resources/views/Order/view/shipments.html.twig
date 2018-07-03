@@ -1,0 +1,115 @@
+<h2>Shipments</h2>
+
+<script>
+    jQuery(document).ready(function($){
+
+        $('[data-long]').hide();
+
+        $('[data-short]').each(function(){
+
+            var $tr = $(this);
+
+            var shipmentId = $(this).data('shipment');
+
+            var $open = $(this).find('[data-open]');
+            var $close = $(this).find('[data-close]');
+
+            $close.hide();
+
+
+            $open.on('click', function(){
+
+                $open.hide();
+                $close.show();
+
+                $('[data-long][data-shipment="'+shipmentId+'"]').show();
+            });
+
+            $close.on('click', function(){
+
+                $open.show();
+                $close.hide();
+
+                $('[data-long][data-shipment="'+shipmentId+'"]').hide();
+            });
+
+        });
+
+
+    });
+</script>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>State</th>
+        <th>Contents</th>
+        <th>Carrier</th>
+        <th></th>
+    </tr>
+    {% for shipment in order.shipments %}
+        <tr data-short data-shipment="{{ shipment.id }}">
+            <td>#{{ shipment.id }}</td>
+            <td><span class="label label-{{ get_state_level(shipment.state) }}">{{ shipment.state }}</span></td>
+            <td>
+                {% set qty = 0 %}
+                {% for shipmentItem in shipment.shipmentItems %}
+                    {% set qty = qty + shipmentItem.qty %}
+                {% endfor %}
+                {{ qty | qty_format }} items
+            </td>
+            <td>
+                {% for shipmentTrack in shipment.shipmentTracks %}
+                    {{ shipmentTrack.carrier.code }}
+                {% endfor %}
+            </td>
+            <td>
+                <a data-open class="btn btn-default"><i class="fa fa-chevron-down"></i></a>
+                <a data-close class="btn btn-default"><i class="fa fa-chevron-up"></i></a>
+                {% if workflow_can(shipment, 'delete') %}
+                    <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                {% endif %}
+            </td>
+        </tr>
+        <tr data-long data-shipment="{{ shipment.id }}">
+            <td colspan="5">
+                <div class="well well-sm">
+
+                    <h4>Items</h4>
+                    <table class="table">
+                        <tr>
+                            <th>SKU</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                        </tr>
+                        {% for shipmentItem in shipment.shipmentItems %}
+                            <tr>
+                                <td>{{ shipmentItem.orderItem.sku }}</td>
+                                <td>{{ shipmentItem.orderItem.name }}</td>
+                                <td>{{ shipmentItem.qty | qty_format }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                    <h4>Tracking numbers</h4>
+                    <table class="table">
+                        <tr>
+                            <th>Carrier</th>
+                            <th>State</th>
+                            <th>Tracking number</th>
+                        </tr>
+                        {% for shipmentTrack in shipment.shipmentTracks %}
+                            <tr>
+                                <td>{{ shipmentTrack.carrier.code }}</td>
+                                <td>{{ shipmentTrack.state }}</td>
+                                <td>{{ shipmentTrack.trackingNumber }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+            </td>
+
+        </tr>
+    {% endfor %}
+</table>

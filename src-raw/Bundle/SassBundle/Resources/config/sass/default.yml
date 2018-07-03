@@ -1,0 +1,19 @@
+raw_sass:
+    apps:
+        default:
+            imports:
+                - '../../bundles/rawdashboard/scss/main'
+                - '../../bundles/app/scss/main'
+            variables:
+                colors:
+                    navy: '#37455a'
+                    blue: '#337ab7'
+                    cyan: '#a3d9cb'
+                    peach: '#ff9d7a'
+                    red: '#d43f3a'
+                    aqua: '#00c0ef'
+                    beige: '#F5F5DC'
+                    white: '#fff'
+                    yellow: '#f0ad4e'
+                    green: '#3c763d'
+                    grey: '#ddd'

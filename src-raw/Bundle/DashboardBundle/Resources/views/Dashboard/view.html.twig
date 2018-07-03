@@ -1,0 +1,94 @@
+{% extends 'RawPlatformBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .grid-stack-item-content {
+            /*background-color: rgba(0,0,0,0.03);*/
+        }
+        .raw-widget {
+            position: relative;
+        }
+        .raw-widget:hover .raw-widget-tools {
+            display: block;
+        }
+        .raw-widget-tools {
+            position: absolute;
+            display: none;
+            top: 5px;
+            right: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block content_wrapper %}
+
+{#
+    <div id="test-app" style="margin-top: 50px;">
+
+        <box type="primary">
+            <h3 slot="header">Here might be a page title</h3>
+
+            Yolo
+            <p>A paragraph for the main content.</p>
+            <p>And another one.</p>
+
+            <p slot="footer">Here's some contact info</p>
+        </box>
+
+    </div>
+#}
+
+
+    {#<div id="platform-test">#}
+
+        {#{{ '{{ message }}' }}#}
+
+        {#<testjo></testjo>#}
+
+    {#</div>#}
+
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/gridstack/dist/gridstack.min.css') }}">
+    <script type="text/javascript" src="{{ asset('assets/vendor/gridstack/dist/gridstack.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/gridstack/dist/gridstack.jQueryUI.min.js') }}"></script>
+
+    <span id="raw-dashboard-{{ dashboard.id }}">
+        <raw-dashboard :dashboard="dashboard"></raw-dashboard>
+    </span>
+    <script>
+        jQuery(document).ready(function($){
+
+            return;
+
+
+            var Platform = Vue.extend({
+            });
+            Platform.component('testjo', {
+                template: '<span>testjo</span>',
+            });
+            new Platform({
+                el: '#platform-test',
+                data: {
+                    message: 'Hello',
+                },
+            });
+
+
+
+            new Vue({
+                el: '#raw-dashboard-{{ dashboard.id }}',
+                data: {
+                    dashboard: {
+                        id: {{ dashboard.id }},
+                        name: '{{ dashboard.name }}',
+                        dateRange: {
+                            start: null,
+                            end: null,
+                        },
+                    },
+                },
+            });
+        });
+    </script>
+{% endblock %}

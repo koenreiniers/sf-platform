@@ -1,0 +1,19 @@
+Raw\Bundle\PlatformBundle\Entity\File:
+    type: entity
+    table: raw_platform_file
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        filename:
+            type: string
+        originalName:
+            type: string
+        path:
+            type: string
+        mimeType:
+            type: string
+        extension:
+            type: string

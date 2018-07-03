@@ -1,0 +1,35 @@
+.box {
+  $boxPadding: 10px;
+  $boxMargin: 15px;
+
+
+  box-shadow: $panelShadow;
+
+  display: block;
+  background-color: #fff;
+  border: $panelBorder;
+  margin-bottom: $boxMargin;
+
+  &.box-default {
+    border-color: $bgColorDefault;
+  }
+  &.box-primary {
+    border-color: $bgColorPrimary;
+  }
+  .box-header {
+    padding: $boxPadding;
+    border-bottom: 1px solid #f0f0f0;
+
+    h1,h2,h3,h4,h5 {
+      margin: 0;
+      color: #333;
+    }
+
+  }
+  .box-body {
+    padding: $boxPadding;
+  }
+  .box-footer {
+    padding: $boxPadding;
+  }
+}

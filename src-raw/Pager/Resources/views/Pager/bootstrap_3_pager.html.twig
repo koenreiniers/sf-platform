@@ -1,0 +1,51 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% import 'raw_pager_macros.html.twig' as macros %}
+
+{% block form %}
+
+    {{ form_start(form) }}
+    <div class="text-center">
+
+    <div class="input-group pull-right">
+        {% block right_group %}
+            <span class="input-group-addon">Items per page</span>
+            {{ form_widget(form.pageSize) }}
+        {% endblock %}
+    </div>
+
+
+    <div class="input-group pull-left">
+        {% block left_group %}
+            <span class="input-group-addon">
+                {% if all_visible %}
+                    Showing all {{ totalCount }} items
+                {% else %}
+                    Showing items {{ startIndex + 1 }} to {{ endIndex }} of {{ totalCount }}<br/>
+                {% endif %}
+            </span>
+        {% endblock %}
+    </div>
+
+    {#{% include 'pager/bootstrap3/button_range.html.twig' %}#}
+
+    {% include 'pager/bootstrap3/page_form.html.twig' %}
+
+
+    {{ form_widget(form.vars.meta_form) }}
+    {{ form_rest(form) }}
+    </div>
+    {{ form_end(form) }}
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            $('[name="page"]').on('change', function(e){
+                $(this).closest('form').submit();
+            });
+            $('[name="pageSize"]').on('change', function(e){
+                $(this).closest('form').submit();
+            });
+        });
+    </script>
+
+{% endblock %}

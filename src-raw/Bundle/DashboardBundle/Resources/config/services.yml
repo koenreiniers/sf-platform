@@ -1,0 +1,21 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+    raw_dashboard.twig.dashboard_extension:
+        class: Raw\Bundle\DashboardBundle\Twig\DashboardExtension
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: twig.extension }
+
+    raw_dashboard.widget_factory:
+        class: Raw\Component\Widget\WidgetFactory
+        arguments:
+            - '@raw_dashboard.widget_registry'
+
+    raw_dashboard.widget_registry:
+        class: Raw\Component\Widget\WidgetRegistry
+        arguments:
+            - ''

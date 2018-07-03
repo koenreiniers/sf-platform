@@ -1,0 +1,7 @@
+main_menu:
+    children:
+#        user_management:
+#            label: 'User management'
+#            route: raw_user.user.index
+#        user_management:
+#            import: admin_users

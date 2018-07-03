@@ -1,0 +1,4 @@
+raw_api.oauth2.token:
+    path: /oauth2/token
+    defaults:
+        _controller: RawApiBundle:OAuth2:token

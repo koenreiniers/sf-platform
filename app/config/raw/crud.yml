@@ -1,0 +1,3 @@
+raw_admin:
+    templates:
+        Raw\Component\Admin\Layout\Definition\TabsNode: AppBundle:LayoutNode:tabs.html.twig

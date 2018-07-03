@@ -1,0 +1,7 @@
+raw_grid.api.grid.mass_action:
+    path: /grids/{gridName}/mass-action
+    defaults:
+        _controller: RawGridBundle:Grid:data
+    methods: [POST]
+    options:
+        expose: true

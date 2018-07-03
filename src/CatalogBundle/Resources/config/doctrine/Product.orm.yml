@@ -1,0 +1,36 @@
+CatalogBundle\Entity\Product:
+    type: entity
+    table: catalog_product
+    repositoryClass: CatalogBundle\Repository\ProductRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: string
+        externalCreatedAt:
+            type: datetime
+        externalUpdatedAt:
+            type: datetime
+        sku:
+            type: string
+        name:
+            type: string
+        weight:
+            type: decimal
+            precision: 10
+            scale: 4
+        price:
+            type: decimal
+            precision: 10
+            scale: 4
+        stockQty:
+            type: decimal
+            precision: 10
+            scale: 4
+    manyToOne:
+        channel:
+            targetEntity: AppBundle\Entity\Channel
+            inversedBy: products

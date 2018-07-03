@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+sass web/assets/scss/app.scss web/assets/css/app.css

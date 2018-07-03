@@ -1,0 +1,20 @@
+<dropdown>
+    <span slot="toggle">
+        <i class="fa fa-bell"></i> <span class="label label-warning">{{ unreadCount }}</span>
+    </span>
+
+    <li class="header">
+        {{ unreadCount }} unread notifications
+    </li>
+    <li v-for="notification in notifications">
+        <a>
+            [{{ notification.type }}] {{ notification.message }}<br/>
+            <button v-if="!notification.read" class="btn btn-default" @click="openNotification(notification)">Goto</button>
+            <button v-if="!notification.read" class="btn btn-default" @click="markAsRead(notification)">Mark as read</button>
+        </a>
+    </li>
+    <li class="footer">
+        <a href="#">View all</a>
+    </li>
+
+</dropdown>.

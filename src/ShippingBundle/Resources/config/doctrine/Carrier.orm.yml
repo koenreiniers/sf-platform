@@ -1,0 +1,12 @@
+ShippingBundle\Entity\Carrier:
+    type: entity
+    table: shipping_carrier
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            unique: true

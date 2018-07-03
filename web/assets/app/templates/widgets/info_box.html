@@ -1,0 +1,22 @@
+<div class="info-box" :class="['bg-'+widget.settings.color]">
+    <span class="info-box-icon" :class="['bg-'+widget.settings.color]">
+        <i class="fa" :class="['fa-'+widget.settings.icon]"></i>
+    </span>
+    <div class="info-box-content">
+        <span class="info-box-text">{{ title }}</span>
+        <span class="info-box-number" v-if="currentData != null">
+            <em v-if="currentData == null">No data</em>
+            {{ currentData }}
+        </span>
+
+        <div class="progress">
+            <div class="progress-bar" :style="{'width': progress+'%'}"></div>
+        </div>
+        <span class="progress-description" style="display: none;">
+            <span v-if="progress == 0">No changes</span>
+            <span v-if="progress != 0">{{ progress }}% {{ progress > 0 ? 'increase' : 'decrease' }}</span>
+        </span>
+
+
+    </div>
+</div>.

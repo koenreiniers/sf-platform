@@ -1,0 +1,9 @@
+services:
+
+    _defaults:
+        autoconfigure: true
+
+    raw_grid.twig.extension:
+        class: Raw\Bundle\GridBundle\Twig\GridExtension
+        calls:
+            - [setContainer, ['@service_container']]

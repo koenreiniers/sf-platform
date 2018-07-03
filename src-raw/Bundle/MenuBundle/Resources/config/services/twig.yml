@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    _instanceof:
+        Symfony\Component\DependencyInjection\ContainerAwareInterface:
+            calls:
+                - [setContainer, ['@service_container']]
+
+    raw_menu.twig.extension.menu:
+        class: Raw\Bundle\MenuBundle\Twig\MenuExtension
+        arguments:
+            - '@knp_menu.helper'

@@ -1,0 +1,3 @@
+catalog.routing.anno:
+    resource: '@CatalogBundle/Controller/'
+    type: annotation

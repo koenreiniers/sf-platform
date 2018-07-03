@@ -1,0 +1,9 @@
+services:
+    app.batch.job.complete_sync:
+        class: AppBundle\Batch\Job\ChannelSpecificJob
+        arguments:
+            -
+                - '@app.batch.step.process_shipment_tracks'
+                - '@app.batch.step.complete_sync'
+        tags:
+            - { name: raw_batch.job, alias: app_complete_sync }

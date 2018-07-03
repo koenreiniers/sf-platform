@@ -1,0 +1,12 @@
+{
+  "browserify": {
+    "base_path": "./raw-sass/",
+    "alias": {
+      "raw-user": "src/raw-sass.js"
+    },
+    "src": [
+      "src/raw-sass.js"
+    ]
+  }
+
+}

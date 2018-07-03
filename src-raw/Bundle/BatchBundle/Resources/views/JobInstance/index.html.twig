@@ -1,0 +1,14 @@
+{% extends 'RawBatchBundle::base.html.twig' %}
+
+{% import 'RawGridBundle::macros.html.twig' as dataGrid %}
+
+{% block content %}
+    <ul>
+        <li>
+            <a class="btn btn-success" href="{{ path('raw_batch.job_instance.create') }}">Create</a>
+        </li>
+    </ul>
+
+    {{ dataGrid.render('job_instances') }}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+Raw\Bundle\ApiBundle\Entity\Client:
+    type: entity
+    table: raw_api_client
+    repositoryClass: Raw\Component\OAuth2\Repository\ClientRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        publicId:
+            type: string
+            unique: true
+        secret:
+            type: string
+    manyToOne:
+        user:
+            targetEntity: Raw\Bundle\UserBundle\Entity\User

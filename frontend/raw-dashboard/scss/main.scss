@@ -1,0 +1,28 @@
+
+.grid-stack-item-content {
+  /*background-color: rgba(0,0,0,0.03);*/
+}
+
+.raw-dashboard {
+  margin-bottom: 100px;
+  .dashboard-toolbar {
+    margin-bottom: 20px;
+  }
+}
+
+.raw-widget {
+  position: relative;
+
+  .raw-widget-tools {
+    position: absolute;
+    display: none;
+    top: 5px;
+    right: 5px;
+  }
+
+  &:hover {
+    .raw-widget-tools {
+      display: block;
+    }
+  }
+}

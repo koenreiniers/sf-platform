@@ -1,0 +1,17 @@
+<div style="height: 100%; margin: 0 5px;">
+
+    <modal :show="showSettings" @hide="showSettings = false">
+        <h4 class="modal-title" slot="header">Edit widget</h4>
+        <raw-widget-form @save="update" :widget="widget"></raw-widget-form>
+    </modal>
+
+    <div class="grid-stack-item-content raw-widget">
+        <component :is="getComponentName()" :widget="widget" :dashboard="dashboard" @save="update"></component>
+
+        <div class="raw-widget-tools pull-right">
+            <span class="btn btn-default btn-xs grid-stack-handle"><i class="fa fa-arrows"></i></span>
+            <button @click="toggleSettings()" class="btn btn-default btn-xs"><i class="fa fa-cog"></i></button>
+            <button @click="remove()" class="btn btn-default btn-xs"><i class="fa fa-trash"></i></button>
+        </div>
+    </div>
+</div>

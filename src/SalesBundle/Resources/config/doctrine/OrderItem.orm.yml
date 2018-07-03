@@ -1,0 +1,43 @@
+SalesBundle\Entity\OrderItem:
+    type: entity
+    table: sales_order_item
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: string
+        sku:
+            type: string
+        name:
+            type: string
+        qtyOrdered:
+            type: decimal
+            precision: 10
+            scale: 4
+        qtyShipped:
+            type: decimal
+            precision: 10
+            scale: 4
+        price:
+            type: decimal
+            precision: 10
+            scale: 4
+        rowTotal:
+            type: decimal
+            precision: 10
+            scale: 4
+        taxAmount:
+            type: decimal
+            precision: 10
+            scale: 4
+        taxPercent:
+            type: decimal
+            precision: 10
+            scale: 4
+    manyToOne:
+        order:
+            targetEntity: SalesBundle\Entity\Order
+            inversedBy: orderItems

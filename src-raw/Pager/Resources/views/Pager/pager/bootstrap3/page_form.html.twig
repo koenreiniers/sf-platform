@@ -1,0 +1,34 @@
+<div class="input-group">
+
+    <span class="input-group-btn">
+          {{ macros.page_button(pager, firstPage, {
+              label: null,
+              icon: 'step-backward',
+              activeClass: 'btn-default disabled'
+          }) }}
+    </span>
+    <span class="input-group-btn">
+          {{ macros.page_button(pager, previousPage, {
+              label: null,
+              icon: 'caret-left',
+              activeClass: 'btn-default disabled'
+          }) }}
+    </span>
+    {{ form_widget(form.page) }}
+
+    <span class="input-group-btn">
+        {{ macros.page_button(pager, nextPage, {
+            label: null,
+            icon: 'caret-right',
+            activeClass: 'btn-default disabled'
+        }) }}
+    </span>
+   <span class="input-group-btn">
+         {{ macros.page_button(pager, lastPage, {
+             label: null,
+             icon: 'step-forward',
+             activeClass: 'btn-default disabled'
+         }) }}
+    </span>
+    {#<span class="input-group-addon">of {{ amountOfPages }}</span>#}
+</div>

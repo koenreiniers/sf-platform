@@ -1,0 +1,28 @@
+Raw\Bundle\DashboardBundle\Entity\Widget:
+    type: entity
+    table: raw_dashboard_widget
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+        type:
+            type: string
+            column: "`type`"
+        settings:
+            type: array
+        x:
+            type: integer
+        y:
+            type: integer
+        width:
+            type: integer
+        height:
+            type: integer
+    manyToOne:
+        dashboard:
+            targetEntity: Raw\Bundle\DashboardBundle\Entity\Dashboard
+            inversedBy: widgets

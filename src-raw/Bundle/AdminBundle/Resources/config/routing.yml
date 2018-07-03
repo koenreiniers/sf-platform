@@ -1,0 +1,51 @@
+raw_admin.default.index:
+    path: /admins
+    defaults:
+        _controller: RawAdminBundle:Default:index
+
+#raw_admin.crud.index:
+#    path: /crud/{slug}
+#    defaults:
+#        _controller: RawAdminBundle:Crud:index
+#
+#raw_admin.crud.create:
+#    path: /crud/{slug}/create
+#    defaults:
+#        _controller: RawAdminBundle:Crud:create
+#
+#raw_admin.crud.view:
+#    path: /crud/{slug}/{id}
+#    defaults:
+#        _controller: RawAdminBundle:Crud:view
+#
+#raw_admin.crud.verb:
+#    path: /crud/{slug}/{id}/{verb}
+#    requirements:
+#        verb: edit|delete
+#    defaults:
+#        _controller: RawAdminBundle:Crud:verb
+
+#raw_admin.admin.index:
+#    path: /crud/{slug}
+#    defaults:
+#        _controller: RawAdminBundle:Admin:index
+#
+#raw_admin.admin.create:
+#    path: /crud/{slug}/create
+#    defaults:
+#        _controller: RawAdminBundle:Admin:create
+#
+#raw_admin.admin.view:
+#    path: /crud/{slug}/{id}
+#    defaults:
+#        _controller: RawAdminBundle:Admin:view
+#
+#raw_admin.admin.edit:
+#    path: /crud/{slug}/{id}/edit
+#    defaults:
+#        _controller: RawAdminBundle:Admin:edit
+#
+#raw_admin.admin.delete:
+#    path: /crud/{slug}/{id}/delete
+#    defaults:
+#        _controller: RawAdminBundle:Admin:delete

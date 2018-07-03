@@ -1,0 +1,128 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block list %}
+
+    {% set classes = [] %}
+    {% if listAttributes.class is defined %}
+        {% set classes = listAttributes.class | split(' ') %}
+    {% endif %}
+
+    {% if item.level == 0 %}
+        {% set classes = classes|merge(['menu']) %}
+    {% elseif item.level == 1 %}
+        {% set classes = classes|merge(['popout-menu']) %}
+        {% if item.extras.large is defined and item.extras.large == true %}
+            {% set classes = classes|merge(['large']) %}
+        {% endif %}
+    {% elseif item.level == 2 %}
+        {% set classes = classes|merge(['submenu']) %}
+    {% endif %}
+    {% set listAttributes = listAttributes|merge({'class': classes | join(' ')}) %}
+    {{ parent() }}
+{% endblock %}
+
+{% block children_default %}
+
+{% endblock %}
+
+{% block children_menu %}
+
+{% endblock %}
+
+{% block children_popout %}
+    {% if item.label is not empty %}
+        <li class="header">
+                <span class="pull-right">
+                     <a href="#" data-close>
+                         <i class="fa fa-times"></i>
+                     </a>
+                </span>
+            {{ block('labelText') }}
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block children_submenu %}
+    {% if item.label is not empty %}
+        <li class="header">
+            {{ block('labelText') }}
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block children %}
+    {% if item.level == 0 %}
+        {{ block('children_menu') }}
+    {% elseif item.level == 1 %}
+        {{ block('children_popout') }}
+    {% elseif item.level == 2 %}
+        {{ block('children_submenu') }}
+    {% else %}
+        {{ block('children_default') }}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block icon %}
+    {% set icon = null %}
+    {% if item.extras.icon is defined %}
+        {% set icon = item.extras.icon %}
+        <i class="fa fa-{{ icon }}"></i>
+    {% endif %}
+{% endblock %}
+
+{% block linkElement %}
+    {% if item.level == 2 %}
+    {% else %}
+        {% import 'knp_menu.html.twig' as knp_menu %}
+        <a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>
+    {% endif %}
+{% endblock %}
+
+{% block spanElement %}
+    {% if item.level == 2 %}
+    {% else %}
+        {% import 'knp_menu.html.twig' as knp_menu %}
+        <a href="#" {{ knp_menu.attributes(item.labelAttributes) }}>{{ block('label') }}</a>
+    {% endif %}
+{% endblock %}
+
+{% block labelText %}
+    {% if options.allow_safe_labels and item.getExtra('safe_label', false) %}
+        {{ item.label | trans | raw | capitalize }}
+    {% else %}
+        {{ item.label | trans | capitalize }}
+    {% endif %}
+{% endblock %}
+
+{% block label_submenu_header %}
+    <span class="pull-right">
+          {{ block('icon') }}
+    </span>
+    {{ block('labelText') }}
+{% endblock %}
+
+{% block label_menu %}
+
+    {{ block('icon') }}
+    <span>
+        {{ block('labelText') }}
+    </span>
+{% endblock %}
+
+{% block label_default %}
+    {{ block('icon') }}
+    {{ block('labelText') }}
+{% endblock %}
+
+
+{% block label %}
+    {% if item.level == 1 %}
+        {{ block('label_menu') }}
+    {% elseif item.level == 2 %}
+        {{ block('label_submenu_header') }}
+    {% else %}
+        {{ block('label_default') }}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,8 @@
+services:
+
+    raw_batch.form.type.job_instance:
+        class: Raw\Bundle\BatchBundle\Form\Type\JobInstanceType
+        arguments:
+            - '@raw_batch.job_registry'
+        tags:
+            - { name: form.type }

@@ -1,0 +1,134 @@
+{% macro render(tag, options) %}
+    {% import _self as btns %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        url: null,
+        label: '',
+        level: 'default',
+        icon: null,
+        classes: []
+    } %}
+    {% set options = defaults|merge(options) %}
+    {% set classes = ['btn', 'btn-'~options.level]|merge(options.classes) %}
+    {% if options.icon is not empty %}
+        {% set classes = classes|merge(['btn-icon']) %}
+    {% endif %}
+    <{{ tag }} class="{{ classes|join(' ') }}" href="{{ options.url }}">
+        {{ btns.label(options) }}
+    </{{ tag }}>
+{% endmacro %}
+
+{% macro submit(options) %}
+{% set tag = 'button' %}
+    {% import _self as btns %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        url: null,
+        label: '',
+        level: 'default',
+        icon: null,
+        classes: []
+    } %}
+    {% set options = defaults|merge(options) %}
+    {% set classes = ['btn', 'btn-'~options.level]|merge(options.classes) %}
+    {% if options.icon is not empty %}
+        {% set classes = classes|merge(['btn-icon']) %}
+    {% endif %}
+    <{{ tag }} type="submit" class="{{ classes|join(' ') }}">
+        {{ btns.label(options) }}
+    </{{ tag }}>
+{% endmacro %}
+
+{% macro anchor(options) %}
+    {% import _self as btns %}
+    {{ btns.render('a', options) }}
+{% endmacro %}
+
+{% macro icon(action) %}
+    {% if action.icon is not empty %}
+        <i class="fa fa-{{ action.icon }}"></i>
+    {% endif %}
+{% endmacro %}
+
+{% macro label(action) %}
+    {% import _self as btns %}
+    {{ btns.icon(action) }}
+    {% if action.label is not empty %}
+        {{ action.label }}
+    {% endif %}
+{% endmacro %}
+
+{% macro return(options) %}
+    {% import _self as btns %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        url: null,
+        label: 'Return',
+        position: 'left',
+        icon: 'chevron-left'
+    } %}
+    {% set options = defaults|merge(options) %}
+    {{ btns.anchor(options) }}
+{% endmacro %}
+
+{% macro cancel(options) %}
+    {% import _self as btns %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        label: 'Cancel',
+        icon: 'times'
+    } %}
+    {% set options = defaults|merge(options) %}
+    {{ btns.anchor(options) }}
+{% endmacro %}
+
+{% macro save(options) %}
+    {% import _self as btns %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        label: 'Save changes',
+        level: 'success',
+        icon: 'check'
+    } %}
+    {% set options = defaults|merge(options) %}
+    {{ btns.submit(options) }}
+{% endmacro %}
+
+{% macro edit(options) %}
+    {% import _self as btns %}
+    {% set options = options is iterable ? options : {url: options} %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        label: 'Edit',
+        level: 'primary',
+        icon: 'pencil'
+    } %}
+    {% set options = defaults|merge(options) %}
+    {{ btns.anchor(options) }}
+{% endmacro %}
+
+{% macro delete(options) %}
+    {% import _self as btns %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        label: 'Delete',
+        icon: 'trash',
+        level: 'danger'
+    } %}
+    {% set options = defaults|merge(options) %}
+    {{ btns.anchor(options) }}
+{% endmacro %}
+
+{% macro create(options) %}
+    {% import _self as btns %}
+    {% set options = options is iterable ? options : {url: options} %}
+    {% set options = options is not empty ? options : {} %}
+    {% set defaults = {
+        label: 'Create',
+        level: 'success',
+        icon: 'plus'
+    } %}
+
+    {% set options = defaults|merge(options) %}
+    {{ btns.anchor(options) }}
+{% endmacro %}

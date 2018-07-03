@@ -1,0 +1,17 @@
+Raw\Bundle\BatchBundle\Entity\Warning:
+    type: entity
+    table: raw_batch_warning
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        message:
+            type: string
+        item:
+            type: array
+    manyToOne:
+        stepExecution:
+            targetEntity: Raw\Bundle\BatchBundle\Entity\StepExecution
+            inversedBy: warnings

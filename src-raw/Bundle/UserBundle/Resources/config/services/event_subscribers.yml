@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    _instanceof:
+        Symfony\Component\DependencyInjection\ContainerAwareInterface:
+            calls:
+                - [setContainer, ['@service_container']]
+        Doctrine\Common\EventSubscriber:
+            tags:
+                - { name: doctrine.event_subscriber }
+
+    raw_user.event_subscriber.notification:
+        class: Raw\Bundle\UserBundle\EventSubscriber\NotificationSubscriber
+
+    raw_user.event_subscriber.ownable:
+        class: Raw\Bundle\UserBundle\EventSubscriber\OwnableSubscriber
+
+    Raw\Bundle\UserBundle\EventSubscriber\JobNotifySubscriber:
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Raw\Bundle\UserBundle\EventSubscriber\UserSubscriber: ~

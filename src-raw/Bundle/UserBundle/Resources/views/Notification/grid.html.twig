@@ -1,0 +1,17 @@
+{% extends 'RawBatchBundle::base.html.twig' %}
+
+{% import 'RawGridBundle::macros.html.twig' as grid %}
+
+{% import 'RawPlatformBundle:Macro:buttons.html.twig' as buttons %}
+
+{% block actions %}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+    {{ grid.render('notifications', {'owner': app.user.id}) }}
+
+{% endblock %}

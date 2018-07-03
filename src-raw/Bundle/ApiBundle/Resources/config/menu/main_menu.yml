@@ -1,0 +1,5 @@
+main_menu:
+    children: []
+#        api_clients:
+#
+#            import: admin_api-clients

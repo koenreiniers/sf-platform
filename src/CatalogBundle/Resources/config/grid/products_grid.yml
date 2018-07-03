@@ -1,0 +1,74 @@
+products_grid:
+    properties:
+        computed_data: []
+#            view_url:
+#                type: url
+#                route: catalog.product.view
+#                routeParams:
+#                    id: :id
+        identifier: id
+        className: CatalogBundle\Entity\Product
+    data_source:
+        type: orm
+        options:
+            query:
+                from:
+                    o: CatalogBundle\Entity\Product
+                select:
+                    - o.id
+                    - o.name
+                    - o.sku
+                    - o.stockQty
+    sorters:
+        id:
+            field: o.id
+        sku:
+            field: o.sku
+        name:
+            field: o.name
+        stockQty:
+            field: o.stockQty
+    columns:
+        id:
+            type: integer
+            label: Identifier
+        sku:
+            type: string
+            label: SKU
+        name:
+            type: string
+            label: Name
+        stockQty:
+            type: string
+            label: Qty in stock
+            formatter: qty
+    filters:
+        id:
+            type: integer
+            label: Id
+            field: o.id
+        sku:
+            type: string
+            label: SKU
+            field: o.sku
+        name:
+            type: string
+            label: Name
+            field: o.name
+        stockQty:
+            type: integer
+            label: Qty in stock
+            field: o.stockQty
+    actions: []
+#        view:
+#            type: view
+#            url: :view_url
+#            label: View
+#        edit:
+#            type: edit
+#            url: :edit_url
+#            label: Edit
+#        delete:
+#            type: delete
+#            url: :delete_url
+#            label: Delete

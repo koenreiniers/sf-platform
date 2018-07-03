@@ -1,0 +1,19 @@
+Raw\Bundle\UserBundle\Entity\UserGroup:
+    type: entity
+    fields:
+        code:
+            type: string
+            unique: true
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+#    manyToMany:
+#        users:
+#            targetEntity: Raw\Bundle\UserBundle\Entity\User
+#            mappedBy: groups
+#    oneToMany:
+#        notifications:
+#            targetEntity: Raw\Bundle\UserBundle\Entity\Notification
+#            mappedBy: owner

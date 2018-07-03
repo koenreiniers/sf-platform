@@ -1,0 +1,13 @@
+$bgColorDefault: map-get($colors, 'grey');
+$bgColorPrimary: map-get($colors, 'blue');
+$bgColorSuccess: map-get($colors, 'green');
+$bgColorWarning: map-get($colors, 'yellow');
+$bgColorInfo: map-get($colors, 'navy');
+$bgColorDanger: map-get($colors, 'red');
+
+$colorDefault: $white;
+$colorPrimary: $white;
+$colorSuccess: $white;
+$colorWarning: $white;
+$colorInfo: $white;
+$colorDanger: $white;

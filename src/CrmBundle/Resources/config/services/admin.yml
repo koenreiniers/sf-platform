@@ -1,0 +1,7 @@
+services:
+    crm.admin.customer:
+        class: CrmBundle\Admin\CustomerAdmin
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+        tags:
+            - { name: raw.admin, alias: customers }

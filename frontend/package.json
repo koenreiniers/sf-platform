@@ -1,0 +1,30 @@
+{
+  "name": "raw-grid",
+  "email": "koenreiniers@msn.com",
+  "scripts": {
+    "build": "NODE_ENV=production grunt default"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "bootstrap": "^3.3.7",
+    "chart.js": "^2.7.1",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.2.0",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-copy": "^0.1.0",
+    "grunt-envify": "^0.1.0",
+    "grunt-move": "^0.1.2",
+    "grunt-sass": "^2.0.0",
+    "jquery": "^3.2.1",
+    "jquery-serializejson": "^2.8.1",
+    "jquery-ui": "^1.12.1",
+    "load-grunt-tasks": "^3.5.2",
+    "lodash": "^4.17.4",
+    "moment": "^2.19.1",
+    "vue": "^2.5.2"
+  }
+}

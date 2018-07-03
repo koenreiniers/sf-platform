@@ -1,0 +1,19 @@
+imports:
+    - { resource: services/* }
+
+services:
+
+    raw_menu.extension.import:
+        class: Raw\Component\Menu\Extension\ImportExtension
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: knp_menu.factory_extension, priority: -1000 }
+
+    raw_menu.provider.yaml_file:
+        class: Raw\Component\Menu\Provider\YamlFileMenuProvider
+        arguments:
+            - ''
+            - '@knp_menu.factory'
+        tags:
+            - { name: knp_menu.provider }

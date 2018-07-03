@@ -1,0 +1,22 @@
+SalesBundle\Entity\ShipmentTrack:
+    type: entity
+    table: sales_shipment_track
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        state:
+            type: string
+        title:
+            type: string
+        trackingNumber:
+            type: string
+            nullable: true
+    manyToOne:
+        shipment:
+            targetEntity: SalesBundle\Entity\Shipment
+            inversedBy: shipmentTracks
+        carrier:
+            targetEntity: ShippingBundle\Entity\Carrier

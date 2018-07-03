@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Filters
+        </h3>
+        <span class="panel-tools pull-right">
+
+            <button class="btn btn-sm btn-default" @click="undo()" v-if="actions.length > 0">Undo</button>
+
+            <button @click="toggleMode()" class="btn btn-sm btn-default">
+                <span v-if="usersettings.advancedMode">Simple mode</span>
+                <span v-if="!usersettings.advancedMode">Advanced mode</span>
+            </button>
+
+            <button class="btn btn-sm btn-default" @click="addFilter()">Add filter</button>
+
+            <button class="btn btn-sm btn-default" @click="clearFilters()">Clear filters</button>
+        </span>
+    </div>
+    <div class="panel-body">
+        <grid-filter
+                v-for="(filter, index) in filters"
+                @remove="removeFilter(index)"
+                :definitions="definitions"
+                :filter="filter"
+                :usersettings="usersettings"
+        ></grid-filter>
+
+        <grid-filter
+                v-for="(filter, index) in newFilters"
+                @save="addNewFilter(index)"
+                @remove="removeNewFilter(index)"
+                :definitions="definitions"
+                :filter="filter"
+                :usersettings="usersettings"
+        ></grid-filter>
+    </div>
+
+
+</div>

@@ -1,0 +1,40 @@
+
+.info-box {
+
+  display: block;
+  min-height: 90px;
+  background-color: #fff;
+  box-shadow: $boxShadow;
+  border: $boxBorder;
+
+  .info-box-content {
+    padding: 5px 10px;
+    margin-left: 90px;
+
+    h1,h2,h3,h4,h5 {
+      margin: 0;
+    }
+
+  }
+
+  .info-box-text {
+    display: block;
+  }
+  .info-box-number {
+    display: block;
+    font-weight: bold;
+  }
+
+
+  .info-box-icon {
+    display: block;
+    min-width: 90px;
+    height: 90px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 3em;
+    float: left;
+    //background-color: $bgColorDefault;
+    color: #fff;
+  }
+}

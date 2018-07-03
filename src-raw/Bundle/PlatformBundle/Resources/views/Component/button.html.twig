@@ -1,0 +1,8 @@
+{% block button_start %}
+    {% set type = type is defined ? type : 'default' %}
+    <button class="btn btn-{{ type }}">
+{% endblock %}
+
+{% block button_end %}
+    </button>
+{% endblock %}

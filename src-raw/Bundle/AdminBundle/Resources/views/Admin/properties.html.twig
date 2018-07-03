@@ -1,0 +1,30 @@
+{% macro display(value) %}
+    {% import _self as macros %}
+    {% if value is iterable %}
+        <ul>
+            {% for element in value %}
+            <li>
+                {{ macros.display(element) }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {{ value }}
+    {% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+<table class="table">
+    {% for name in properties %}
+
+        {% set value = attribute(entity, name) %}
+
+        <tr>
+            <th>{{ name | humanize }}</th>
+            <td>
+                {{ macros.display(value) }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

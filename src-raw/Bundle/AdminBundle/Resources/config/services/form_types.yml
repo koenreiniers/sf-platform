@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    _instanceof:
+        Symfony\Component\Form\FormTypeInterface:
+            tags:
+                - { name: form.type }
+
+    Raw\Bundle\AdminBundle\Form\Type\DeleteEntityType:
+        arguments:
+            - '@doctrine.orm.default_entity_manager'

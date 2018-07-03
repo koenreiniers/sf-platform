@@ -1,0 +1,30 @@
+SalesBundle\Entity\Shipment:
+    type: entity
+    table: sales_shipment
+    repositoryClass: SalesBundle\Repository\ShipmentRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: string
+            nullable: true
+        state:
+            type: string
+        createdAt:
+            type: datetime
+    oneToMany:
+        shipmentItems:
+            targetEntity: SalesBundle\Entity\ShipmentItem
+            mappedBy: shipment
+            cascade: [persist, remove]
+        shipmentTracks:
+            targetEntity: SalesBundle\Entity\ShipmentTrack
+            mappedBy: shipment
+            cascade: [persist, remove]
+    manyToOne:
+        order:
+            targetEntity: SalesBundle\Entity\Order
+            inversedBy: shipments

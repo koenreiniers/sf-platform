@@ -1,0 +1,7 @@
+<box type="default">
+    <h3 slot="header" class="box-title">{{ widget.title }}</h3>
+    <span v-if="widget.settings.gridName">
+       <grid v-if="loaded" :name="widget.settings.gridName"></grid>
+    </span>
+
+</box>

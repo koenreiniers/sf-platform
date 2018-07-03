@@ -1,0 +1,21 @@
+raw_user.user.crud:
+    resource: 'routing/crud/user.yml'
+    defaults:
+        slug: users
+
+raw_user.notification.index:
+    path: /notifications
+    defaults:
+        _controller: RawUserBundle:Notification:grid
+    options:
+        expose: true
+
+raw_user.security.login:
+    path: /login
+    defaults:
+        _controller: RawUserBundle:Security:login
+
+raw_user.security.logout:
+    path: /logout
+    defaults:
+        _controller: RawUserBundle:Security:logout
